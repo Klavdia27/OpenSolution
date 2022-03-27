@@ -10,7 +10,7 @@ type Props = {
   someProp?: any;
 };
 
-export const TodosPage: React.FC<Props> = ({ someProp }) => {
+export const TodosPage: React.FC<Props> = () => {
   const {
     handleAddTodo,
     handleChangeNewTodoName,
