@@ -1,0 +1,26 @@
+$bg-error: #FDD7DA;
+
+.form {
+  div, button {
+    width: 100%;
+  }
+}
+
+.errorWrapper {
+  max-height: 0;
+  transition: max-height .3s ease-out;
+  overflow: hidden;
+}
+
+.show {
+  max-height: 40rem;
+  transition: max-height .7s ease-in;
+}
+
+.error {
+  background-color: $bg-error;
+  padding: 0.875rem 0;
+
+  font-size: 1.25rem;
+  font-weight: bold;
+}

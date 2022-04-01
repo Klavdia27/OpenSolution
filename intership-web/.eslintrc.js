@@ -103,7 +103,8 @@ module.exports = {
     'import/no-unresolved': [2],
     'consistent-return': 0,
     'no-debugger': process.env.NODE_ENV === 'production' ? 2 : 1,
-    'no-console': 0,
+    'no-console': 1,
+    'spaced-comment': 1,
   },
 };
 

@@ -7,6 +7,8 @@ type Props = {
 
 export const Input: React.FC<Props> = ({ type, ...rest }) => {
   switch (type) {
+    case 'password':
+      return <InputText type="password" {...rest} />;
     case 'text':
       return <InputText {...rest} />;
     case 'number':

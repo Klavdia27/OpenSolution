@@ -4,6 +4,8 @@ body {
     'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  height: 100vh;
+  width: 100vw;
 }
 
 code {
@@ -12,5 +14,111 @@ code {
 
 #root {
   display: flex;
-  min-height: calc(100vh - var(--header-height));
+  /* min-height: calc(100vh - var(--header-height)); */
+
+  height: 100%;
+  width: 100%;
+  font-size: 100%;
+  line-height: 100%;
+}
+
+.m-auto {
+  margin: 0 auto;
+}
+
+/**
+  Flex utils classes
+ */
+.flex {
+  display: flex;
+}
+
+.flex-col {
+  flex-direction: column;
+}
+
+.align-center {
+  align-items: center;
+}
+
+/**
+  Text utils classes
+ */
+.text-center {
+  text-align: center;
+}
+
+.text-sm {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+}
+
+.text-base {
+  font-size: 1rem; /* 16px */
+  line-height: 1.5rem; /* 24px */
+}
+
+.text-lg {
+  font-size: 1.125rem;
+  line-height: 1.75rem;
+}
+
+.text-xl {
+  font-size: 1.25rem;
+  line-height: 1.75rem;
+}
+
+.text-2xl {
+  font-size: 1.5rem;
+  line-height: 2rem;
+}
+
+/**
+  Size utils classes
+ */
+.h-full {
+  height: 100vh;
+}
+
+.w-full {
+  width: 100%;
+}
+
+.w-1 {
+  width: 0.25rem; /* 4px */
+}
+
+.w-80 {
+  width: 20rem;
+}
+
+.w-96 {
+  width: 24rem;
+}
+
+.space-y-1 > * + * {
+  margin-top: 0.25rem; /* 4px */
+}
+
+.space-y-4 > * + * {
+  margin-top: 1rem;
+}
+
+/**
+  Margin utils classes
+ */
+.mt-1 {
+  margin-top: 0.25rem; /* 4px */
+}
+
+.mt-12 {
+  margin-top: 3rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem; /* 4px */
+}
+
+.mb-12 {
+  margin-bottom: 3rem;
 }
