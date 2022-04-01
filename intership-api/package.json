@@ -28,7 +28,7 @@
     },
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "nodemon --ignore 'db/db.json' --exec ts-node server.ts"
+        "start": "nodemon --ignore 'db/db.json' --exec npx ts-node server.ts"
     },
     "license": "ISC"
 }

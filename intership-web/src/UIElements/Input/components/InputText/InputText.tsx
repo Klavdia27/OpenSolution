@@ -1,10 +1,11 @@
 import React, { InputHTMLAttributes } from 'react';
-import s from './styles.module.scss';
+import cs from 'classnames';
+import styles from './styles.module.scss';
 
 type Props = InputHTMLAttributes<HTMLInputElement> & {
   someProp?: any;
 };
 
 export const InputText: React.FC<Props> = ({ value, ...rest }) => {
-  return <input type="text" value={value} {...rest} />;
+  return <input className={cs(styles.input)} type="text" value={value} {...rest} />;
 };
