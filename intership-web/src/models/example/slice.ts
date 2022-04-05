@@ -1,16 +1,19 @@
 /* eslint-disable no-param-reassign */
 import { createSlice, Slice } from '@reduxjs/toolkit';
 
-type ISlice = { isLoading: boolean; user: any };
+type ISlice = {
+  isLoading: boolean;
+  user: any;
+};
 
-const initialState = {
+export const initialUserState = {
   isLoading: false,
   user: null,
 };
 
 export const userSlice: Slice<ISlice> = createSlice({
   name: 'store',
-  initialState,
+  initialState: initialUserState,
   reducers: {
     setUser: (state, action) => {
       state.isLoading = false;

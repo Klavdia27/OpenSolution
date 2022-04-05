@@ -1,12 +1,20 @@
-import React, { useCallback, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useAppDispatch, useAppSelector } from 'Src/hooks';
+import { doLogin } from 'Src/models/identity/slice';
 
-const maxLength = (str: string) => str.length > 4;
+// определяем максимальную длину введеной строки в логин и пароль.
+const maxLength = (str: string) => str.length > 0;
+
 const validators = {
   login: [Boolean, maxLength],
   password: [Boolean],
 };
 
 export const useForm = () => {
+  const dispatch = useAppDispatch();
+  const identity = useAppSelector((state) => state.identity);
+  const navigate = useNavigate();
   const [login, setLogin] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [isValidForm, setValidForm] = useState<boolean>(false);
@@ -20,6 +28,7 @@ export const useForm = () => {
 
   useMemo(() => setValidForm(isValidLogin && isValidPassword), [isValidLogin, isValidPassword]);
 
+  // функция которая вызывается при вводе в поле логина
   const handleChangeLogin = useCallback(
     ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) => {
       setLogin(value);
@@ -27,6 +36,8 @@ export const useForm = () => {
     },
     [],
   );
+
+  // функция которая вызывается при вводе в поле пароля
   const handleChangePassword = useCallback(
     ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) => {
       setPassword(value);
@@ -34,7 +45,7 @@ export const useForm = () => {
     },
     [],
   );
-
+  // функция которая вызывается при вводе нажатии на кнопку "Sign In"
   const handleSubmit = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
       event.preventDefault();
@@ -42,16 +53,18 @@ export const useForm = () => {
       setWasPressed(true);
 
       if (isValidLogin && isValidPassword) {
-        console.table({
-          login,
-          password,
-        });
-
         setValidForm(true);
+        dispatch(doLogin({ login, password }));
       }
     },
-    [login, password, isValidLogin, isValidPassword],
+    [login, password, isValidLogin, isValidPassword, dispatch],
   );
+
+  useEffect(() => {
+    if (identity.isLogin) {
+      navigate('/');
+    }
+  }, [identity.isLogin, navigate]);
 
   return {
     login,

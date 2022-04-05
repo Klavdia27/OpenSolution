@@ -1,43 +1,51 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+// задаем типы полей
 type IdentitySlice = {
   isLogin: boolean;
-  loading: boolean;
+  isLoading: boolean;
 };
 
+// создаем начальное состояние
 export const initialIdentityState: IdentitySlice = {
   isLogin: false,
-  loading: false,
+  isLoading: false,
 };
 
+// задаем типы полей и экспортируем
 export type CredentialPayload = {
   login: string;
   password: string;
 };
 
+// создаем экшен с type 'login'
 export const doLogin = createAction<CredentialPayload>('login');
-// doLogin()
-// { type: 'login'}
-// doLogin({login: 'user' , password: '123' })
-// {type: 'login' , payload: {login: 'user' , password: '123' }}
 
 export const doLogout = createAction('logout');
-// doLogout()
-// { type: 'logout'}
 
+// создаем identitySlice, объединяет в себе createReducer и createAction
 export const identitySlice = createSlice({
   name: 'identity',
   initialState: initialIdentityState,
   reducers: {
-    setIdentity: (state, action: PayloadAction<IdentitySlice>) => {
+    setLogin: (state, action: PayloadAction<boolean>) => {
       return {
         ...state,
-        loading: action.payload.loading,
-        isLogin: action.payload.isLogin,
+        isLogin: action.payload,
       };
+      // state.isLogin = action.payload;
+    },
+    setLoading: (state, action: PayloadAction<boolean>) => {
+      return {
+        ...state,
+        isLoading: action.payload,
+      };
+      //state.isLoading = action.payload;
     },
   },
 });
 
-export const { setIdentity } = identitySlice.actions;
+// деструктуризируем поле actions, которое получаем из slice
+export const { setLogin, setLoading } = identitySlice.actions;
+// экспортируем созданный редьюсер
 export default identitySlice.reducer;

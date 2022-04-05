@@ -1,13 +1,15 @@
 import React from 'react';
-import cs from 'classnames';
 import { Button } from 'Common/UI/Button';
 import { Input } from 'Common/UI/Input';
-import iconAuth from '../../assets/icon-auth.png';
 
+import cs from 'classnames';
 import styles from './styles.module.scss';
 
+import iconAuth from '../../assets/icon-auth.png';
+
+// определяем типы
 interface LoginFormProps {
-  handleChangeLogin: (event: React.FormEvent<HTMLInputElement>) => void;
+  handleChangeLogin: (event: React.FormEvent<HTMLInputElement>) => void; // функция всегда возвращает undefined
   handleChangePassword: (event: React.FormEvent<HTMLInputElement>) => void;
   handleSubmit: (event: React.MouseEvent<HTMLButtonElement>) => void;
   isValid: boolean;
@@ -15,7 +17,7 @@ interface LoginFormProps {
   login: string;
   password: string;
 }
-
+// принимаем пропсы и отрисовываем форму авторизации
 export const LoginForm: React.FC<LoginFormProps> = ({
   handleChangeLogin,
   handleChangePassword,
