@@ -1,0 +1,41 @@
+$bg-blue: #0085F9;
+$bg-white: #ffffff;
+.footer {
+    background-color: $bg-blue;
+    width: 100vw;
+    height: 3.375rem;
+    display: flex;
+    justify-content: space-between;
+}
+.org {
+    max-width: 60%;
+    margin: auto;
+}
+.button {
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 0.3125rem;
+}
+.button_footer {
+    background-color: $bg-white;
+}
+.icon {
+    width: 2rem;
+    height: 2rem;
+    margin: 0.6875rem 0.875rem;
+}
+.button_back, .button_add_org {
+    background-color: $bg-blue;
+    color: $bg-white;
+    margin: 0.5rem 0;
+    line-height: 140%
+}
+.btns {
+    display: flex;
+    justify-content: space-between;
+
+}
+.complete {
+    background-color: aquamarine;
+}
