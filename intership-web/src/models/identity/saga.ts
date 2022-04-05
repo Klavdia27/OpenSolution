@@ -1,7 +1,7 @@
 import { call, put, takeEvery } from 'redux-saga/effects';
 import { API } from 'Src/Api';
 
-import { setIdentity, doLogin, CredentialPayload, doLogout } from './slice';
+import { setLoading, setLogin, doLogin, CredentialPayload, doLogout } from './slice';
 
 type IdentityResponse = {
   data: {
@@ -12,24 +12,28 @@ type IdentityResponse = {
 function* loginSaga({ payload }: { payload: CredentialPayload }) {
   try {
     const { login, password } = payload;
+    // c помощью деструктуризации берем только data (это будет true или false)
     const { data }: IdentityResponse = yield call(API.post, '/api/authorize', {
       loginData: {
         login,
         password,
       },
     });
-
+    // console.log(data);
     if (data.isLogin) {
-      yield put(setIdentity({ isLogin: data.isLogin, loading: false }));
+      yield put(setLogin(data.isLogin)); //  isLogin = data.isLogin = true
+      yield put(setLoading(false));
     }
   } catch (error) {
     console.error(error);
-    yield put(setIdentity({ isLogin: false, loading: false }));
+    yield put(setLogin(false));
+    yield put(setLoading(false));
   }
 }
 
 function* logoutSaga() {
-  yield put(setIdentity({ isLogin: false, loading: false }));
+  yield put(setLogin(false));
+  yield put(setLoading(false));
 }
 
 function* getIdentitySaga() {
