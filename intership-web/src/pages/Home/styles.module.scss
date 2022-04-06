@@ -39,3 +39,47 @@ $bg-white: #ffffff;
 .complete {
     background-color: aquamarine;
 }
+.item_todo {
+    display: flex;
+    justify-content: left;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    height: 3.6rem;
+    text-align: left;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+.table {
+    display: flex;
+    justify-content: left;
+    font-weight: bold;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    height: 3.6rem;
+    text-align: left;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+ul {
+    margin: 0;
+    padding: 0;
+}
+li {
+    list-style-type: none;
+}
+.form_addtodo {
+    margin: 1rem;
+    padding: 1rem;
+}
+.table_ID {
+    width: 6rem;
+}
+.table_name {
+    width: 18rem;
+}
+.table_address {
+    width: 18rem;
+}
+.table_inn {
+    width: 18rem;
+}

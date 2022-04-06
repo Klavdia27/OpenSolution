@@ -4,10 +4,10 @@ import cs from 'classnames';
 import styles from './styles.module.scss';
 
 type Todo = {
-  //   id: number;
-  text: string;
-  //  address: string;
-  //   INN: string;
+  // id: number;
+  name: string;
+  address: string;
+  INN: string;
   complete: boolean;
 };
 
@@ -21,9 +21,12 @@ interface TodoListItemProps {
 export const TodoListItem: React.FC<TodoListItemProps> = ({ todo, toggleTodo }) => {
   return (
     <li>
-      <label className={cs(styles.complete ? 'complete' : undefined)}>
+      <label className={cs(styles.complete ? 'complete' : undefined, styles.item_todo)}>
+        <div className={cs(styles.table_ID)}> номер ID</div>
+        <div className={cs(styles.table_name)}>{todo.name}</div>
+        <div className={cs(styles.table_address)}>{todo.address}</div>
+        <div className={cs(styles.table_inn)}>{todo.INN}</div>
         <input type="checkbox" checked={todo.complete} onChange={() => toggleTodo(todo)} />
-        {todo.text}
       </label>
     </li>
   );

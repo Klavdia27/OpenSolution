@@ -1,7 +1,10 @@
 import React, { ChangeEvent, useState } from 'react';
 
+import cs from 'classnames';
+import styles from './styles.module.scss';
+
 type Todo = {
-  text: string;
+  name: string;
   // id: number;
   // name: string;
   // address: string;
@@ -25,7 +28,8 @@ export const AddTodoForm: React.FC<AddTodoFormProps> = ({ addTodo }) => {
   };
 
   return (
-    <form>
+    <form className={cs(styles.form_addtodo)}>
+      <input type="text" value={newTodo} onChange={handleChange} />
       <input type="text" value={newTodo} onChange={handleChange} />
       <button type="submit" onClick={handleSubmit}>
         Add Todo
