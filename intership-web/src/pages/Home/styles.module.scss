@@ -68,8 +68,9 @@ li {
     list-style-type: none;
 }
 .form_addtodo {
-    margin: 1rem;
-    padding: 1rem;
+    display: flex;
+    margin: auto;
+    max-width: 60%;
 }
 .table_ID {
     width: 6rem;
@@ -82,4 +83,12 @@ li {
 }
 .table_inn {
     width: 18rem;
+}
+.btn_addtodo {
+    background-color: #00A550;
+    padding: 0.5rem 0.75rem;
+    border: none;
+}
+.icon_action {
+    padding: 0 0.5rem;
 }

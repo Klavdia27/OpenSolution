@@ -2,25 +2,21 @@ import React from 'react';
 import { TodoListItem } from './TodoListItem';
 
 type Todo = {
-  // id: number;
+  id: number;
   name: string;
   address: string;
-  INN: string;
+  inn: string;
   complete: boolean;
 };
-
-type ToggleTodo = (selectedTodo: Todo) => void;
-
 interface TodoListProps {
-  todos: Array<Todo>;
-  toggleTodo: ToggleTodo;
+  items: Array<Todo>;
 }
 
-export const TodoListOrg: React.FC<TodoListProps> = ({ todos, toggleTodo }) => {
+export const TodoListOrg: React.FC<TodoListProps> = ({ items }) => {
   return (
     <ul>
-      {todos.map((todo) => {
-        return <TodoListItem key={todo.name} todo={todo} toggleTodo={toggleTodo} />;
+      {items.map((todo) => {
+        return <TodoListItem key={todo.name} todo={todo} />;
       })}
     </ul>
   );

@@ -7,5 +7,5 @@ type Props = InputHTMLAttributes<HTMLInputElement> & {
 };
 
 export const InputText: React.FC<Props> = ({ value, ...rest }) => {
-  return <input className={cs(styles.input)} type="text" value={value} {...rest} />;
+  return <input className={cs(styles.input)} value={value} {...rest} />;
 };

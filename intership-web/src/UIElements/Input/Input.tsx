@@ -10,9 +10,9 @@ export const Input: React.FC<Props> = ({ type, ...rest }) => {
     case 'password':
       return <InputText type="password" {...rest} />;
     case 'text':
-      return <InputText {...rest} />;
+      return <InputText type="text" {...rest} />;
     case 'number':
-      return null;
+      return <InputText type="number" {...rest} />;
     default:
       return null;
   }
