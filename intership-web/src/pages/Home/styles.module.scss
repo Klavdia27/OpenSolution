@@ -34,7 +34,6 @@ $bg-white: #ffffff;
 .btns {
     display: flex;
     justify-content: space-between;
-
 }
 .complete {
     background-color: aquamarine;
@@ -71,6 +70,24 @@ li {
     display: flex;
     margin: auto;
     max-width: 60%;
+    flex-direction: column;
+    padding: 0 1.1rem;
+    max-width: 30rem;
+    border: 1px solid grey;
+}
+.form_title {
+    font-size: 1.5rem;
+    letter-spacing: 0.01em;
+    font-weight: 600;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid grey;
+}
+.form_boby {
+    padding: 1.1rem 0;
+}
+.form_footer {
+    padding: 1.1rem 0;
+    border-top: 1px solid grey;
 }
 .table_ID {
     width: 6rem;
@@ -84,11 +101,19 @@ li {
 .table_inn {
     width: 18rem;
 }
+.btn_canceltodo {
+    background-color: $bg-white;
+    border: none;
+    margin: 0 2rem;
+}
 .btn_addtodo {
     background-color: #00A550;
     padding: 0.5rem 0.75rem;
     border: none;
+    border-radius: 0.1875rem;
+    color: $bg-white;
 }
 .icon_action {
     padding: 0 0.5rem;
+
 }

@@ -9,6 +9,7 @@ type IdentityResponse = {
   };
 };
 
+// функция worker
 function* loginSaga({ payload }: { payload: CredentialPayload }) {
   try {
     const { login, password } = payload;
@@ -31,11 +32,13 @@ function* loginSaga({ payload }: { payload: CredentialPayload }) {
   }
 }
 
+//  функция worker
 function* logoutSaga() {
   yield put(setLogin(false));
   yield put(setLoading(false));
 }
 
+// функция watcher
 function* getIdentitySaga() {
   yield takeEvery(doLogin, loginSaga);
   yield takeEvery(doLogout, logoutSaga);

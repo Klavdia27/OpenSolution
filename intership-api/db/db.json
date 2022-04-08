@@ -21,6 +21,10 @@
       "name": "234",
       "address": "t234t",
       "INN": 1234356789
+    },
+    {
+      "id": 4,
+      "INN": null
     }
   ],
   "division": [

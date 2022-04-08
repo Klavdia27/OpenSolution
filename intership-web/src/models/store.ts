@@ -4,8 +4,10 @@ import createSagaMiddleware from 'redux-saga';
 import identityReducer, { initialIdentityState } from './identity/slice';
 
 import userReducer, { initialUserState } from './example/slice';
+import orgReducer, { initialOrgState } from './organization/slice';
 import getUserSaga from './example/sagas';
 import getIdentitySaga from './identity/saga';
+import getOrgSaga from './organization/saga';
 
 // persist - функция мидлвар, которая сохраняет значение store (login) в localstorage
 const persist: Middleware<any, RootState> =
@@ -22,12 +24,14 @@ const saga = createSagaMiddleware();
 const rootReducer = combineReducers({
   certs: userReducer,
   identity: identityReducer,
+  org: orgReducer,
 });
 
 // начальные данные state
 let preloadedState = {
   certs: initialUserState,
   identity: initialIdentityState,
+  org: initialOrgState,
 };
 
 // отлов ошибок
@@ -56,6 +60,7 @@ export const store = configureStore({
 
 saga.run(getUserSaga);
 saga.run(getIdentitySaga);
+saga.run(getOrgSaga);
 
 export default store;
 export type RootState = ReturnType<typeof rootReducer>;

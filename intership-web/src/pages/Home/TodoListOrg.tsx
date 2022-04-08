@@ -1,22 +1,17 @@
 import React from 'react';
+import { Organization } from 'Src/models/organization/type';
 import { TodoListItem } from './TodoListItem';
 
-type Todo = {
-  id: number;
-  name: string;
-  address: string;
-  inn: string;
-  complete: boolean;
-};
 interface TodoListProps {
-  items: Array<Todo>;
+  items: Array<Organization>;
 }
 
 export const TodoListOrg: React.FC<TodoListProps> = ({ items }) => {
+  console.log(items);
   return (
     <ul>
       {items.map((todo) => {
-        return <TodoListItem key={todo.name} todo={todo} />;
+        return <TodoListItem key={todo.id} todo={todo} />;
       })}
     </ul>
   );

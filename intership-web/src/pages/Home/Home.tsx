@@ -1,13 +1,15 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import cs from 'classnames';
-import { useAppDispatch } from 'Src/hooks';
+import { useAppDispatch, useAppSelector } from 'Src/hooks';
 import { doLogout } from 'Src/models/identity/slice';
 import { Button } from 'Common/UI/Button';
 import { Input } from 'Src/UIElements/Input';
+import { fetchOrg } from 'Src/models/organization/slice';
 import { TodoListOrg } from './TodoListOrg';
 
 import styles from './styles.module.scss';
 import icon from './assets/icon-auth.png';
+import { Modal } from './modal/Modal';
 
 type Todo = {
   id: number;
@@ -23,10 +25,13 @@ type AddTodo = (newTodo: string) => void;
 interface TodoListProps {
   items: Array<Todo>;
   todos: Array<Todo>;
+  title: string;
 }
 
 export const HomePage: React.FC = () => {
   const dispatch = useAppDispatch();
+  const orgs = useAppSelector((state) => state.org);
+  // console.log(orgs);
 
   const handleLogout = useCallback(() => {
     dispatch(doLogout());
@@ -35,12 +40,17 @@ export const HomePage: React.FC = () => {
   const [nameOrgTodo, setNameOrgTodo] = useState<string>('');
   const [addressOrgTodo, setAddressOrgTodo] = useState<string>('');
   const [innOrgTodo, setInnOrgTodo] = useState<string>('');
+  const [showModal, setShowModal] = useState(false);
 
   const [items, setItems] = useState([
     { id: 1, name: 'namefasd', address: 'Minsk', inn: '53541', complete: true },
     { id: 2, name: 'sfera', address: 'Minsk', inn: '45471', complete: true },
     { id: 3, name: 'sfrsra', address: 'Minsk', inn: '87171', complete: false },
   ]);
+
+  useEffect(() => {
+    dispatch(fetchOrg());
+  }, [dispatch]);
 
   const addItem = useCallback(() => {
     const item = {
@@ -91,7 +101,12 @@ export const HomePage: React.FC = () => {
         <div className={cs(styles.org)}>
           <div className={cs(styles.btns)}>
             <Button className={cs(styles.button_back, styles.button)}>Back</Button>
-            <Button className={cs(styles.button_add_org, styles.button)}>Add Organization</Button>
+            <Button
+              className={cs(styles.button_add_org, styles.button)}
+              onClick={() => setShowModal(true)}
+            >
+              Add Organization
+            </Button>
           </div>
           <div className={cs(styles.table)}>
             <div className={cs(styles.table_ID)}>ID</div>
@@ -100,22 +115,78 @@ export const HomePage: React.FC = () => {
             <div className={cs(styles.table_inn)}>INN</div>
             <div className={cs(styles.table_action)}>Actions</div>
           </div>
-          <TodoListOrg items={items} />
+          <TodoListOrg items={orgs} />
         </div>
       </div>
       <form className={cs(styles.form_addtodo)}>
-        <Input value={nameOrgTodo} name="nameOrgTodo" type="text" onChange={handleChangeOrgName} />
-        <Input
-          value={addressOrgTodo}
-          name="addressOrgTodo"
-          type="text"
-          onChange={handleChangeOrgAddress}
-        />
-        <Input value={innOrgTodo} name="innOrgTodo" type="text" onChange={handleChangeOrgInn} />
-        <Button onClick={handleSubmit} className={cs(styles.btn_addtodo)}>
-          Add Todo
-        </Button>
+        <div className={cs(styles.form_title)}>
+          <div>Add Organization</div>
+        </div>
+        <div className={cs(styles.form_boby)}>
+          <div>Organization Name</div>
+          <Input
+            value={nameOrgTodo}
+            name="nameOrgTodo"
+            type="text"
+            onChange={handleChangeOrgName}
+          />
+          <div>Organization Address</div>
+          <Input
+            value={addressOrgTodo}
+            name="addressOrgTodo"
+            type="text"
+            onChange={handleChangeOrgAddress}
+          />
+          <div>Organization’s INN</div>
+          <Input value={innOrgTodo} name="innOrgTodo" type="text" onChange={handleChangeOrgInn} />
+        </div>
+        <div className={cs(styles.form_footer)}>
+          <Button onClick={() => setShowModal(false)} className={cs(styles.btn_canceltodo)}>
+            Cancel
+          </Button>
+          <Button onClick={handleSubmit} className={cs(styles.btn_addtodo)}>
+            Add
+          </Button>
+        </div>
       </form>
+
+      {showModal && (
+        <Modal title="Add Organization" onClose={() => setShowModal(false)}>
+          <form className={cs(styles.form_addtodo)}>
+            <div className={cs(styles.form_boby)}>
+              <div>Organization Name</div>
+              <Input
+                value={nameOrgTodo}
+                name="nameOrgTodo"
+                type="text"
+                onChange={handleChangeOrgName}
+              />
+              <div>Organization Address</div>
+              <Input
+                value={addressOrgTodo}
+                name="addressOrgTodo"
+                type="text"
+                onChange={handleChangeOrgAddress}
+              />
+              <div>Organizations INN</div>
+              <Input
+                value={innOrgTodo}
+                name="innOrgTodo"
+                type="text"
+                onChange={handleChangeOrgInn}
+              />
+            </div>
+            <div className={cs(styles.form_footer)}>
+              <Button onClick={() => setShowModal(false)} className={cs(styles.btn_canceltodo)}>
+                Cancel
+              </Button>
+              <Button onClick={handleSubmit} className={cs(styles.btn_addtodo)}>
+                Add
+              </Button>
+            </div>
+          </form>
+        </Modal>
+      )}
     </div>
   );
 };
