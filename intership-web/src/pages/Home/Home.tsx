@@ -27,6 +27,7 @@ interface TodoListProps {
   items: Array<Todo>;
   todos: Array<Todo>;
   title: string;
+  onPress: void;
 }
 type Props = {
   someProp?: any;
@@ -35,7 +36,7 @@ type Props = {
 export const HomePage: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
   const orgs = useAppSelector((state) => state.org);
-  // console.log(orgs);
+  console.log(orgs);
 
   const handleLogout = useCallback(() => {
     dispatch(doLogout());

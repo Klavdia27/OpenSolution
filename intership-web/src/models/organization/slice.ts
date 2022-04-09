@@ -1,5 +1,5 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Organization } from './type';
+import { Organization, OrganizationCreate } from './type';
 
 // задаем типы полей
 type OrgSlice = Array<Organization>;
@@ -9,6 +9,7 @@ export const initialOrgState: OrgSlice = [];
 // создаем экшен с type 'login'
 export const fetchOrg = createAction('fetchOrg');
 
+export const addOrg = createAction<OrganizationCreate>('addOrg');
 // создаем identitySlice, объединяет в себе createReducer и createAction
 export const orgSlice = createSlice({
   name: 'org',
