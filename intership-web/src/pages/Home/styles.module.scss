@@ -20,23 +20,12 @@ $bg-white: #ffffff;
 .button_footer {
     background-color: $bg-white;
 }
-.icon {
-    width: 2rem;
-    height: 2rem;
-    margin: 0.6875rem 0.875rem;
-}
+
 .button_back, .button_add_org {
     background-color: $bg-blue;
     color: $bg-white;
     margin: 0.5rem 0;
     line-height: 140%
-}
-.btns {
-    display: flex;
-    justify-content: space-between;
-}
-.complete {
-    background-color: aquamarine;
 }
 .item_todo {
     display: flex;
@@ -48,6 +37,7 @@ $bg-white: #ffffff;
     align-items: center;
     padding: 0 0.5rem;
 }
+
 .table {
     display: flex;
     justify-content: left;
@@ -59,12 +49,24 @@ $bg-white: #ffffff;
     align-items: center;
     padding: 0 0.5rem;
 }
-ul {
-    margin: 0;
-    padding: 0;
+.table_ID {
+    width: 6rem;
 }
-li {
-    list-style-type: none;
+.table_name {
+    width: 18rem;
+}
+.table_address {
+    width: 18rem;
+}
+.table_inn {
+    width: 18rem;
+}
+.btns {
+    display: flex;
+    justify-content: space-between;
+}
+.complete {
+    background-color: aquamarine;
 }
 .form_addtodo {
     display: flex;
@@ -73,7 +75,6 @@ li {
     flex-direction: column;
     padding: 0 1.1rem;
     max-width: 30rem;
-    border: 1px solid grey;
 }
 .form_title {
     font-size: 1.5rem;
@@ -89,18 +90,7 @@ li {
     padding: 1.1rem 0;
     border-top: 1px solid grey;
 }
-.table_ID {
-    width: 6rem;
-}
-.table_name {
-    width: 18rem;
-}
-.table_address {
-    width: 18rem;
-}
-.table_inn {
-    width: 18rem;
-}
+
 .btn_canceltodo {
     background-color: $bg-white;
     border: none;
@@ -112,8 +102,4 @@ li {
     border: none;
     border-radius: 0.1875rem;
     color: $bg-white;
-}
-.icon_action {
-    padding: 0 0.5rem;
-
 }

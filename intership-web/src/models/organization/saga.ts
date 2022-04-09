@@ -21,6 +21,8 @@ function* fetchOrgWorker() {
   }
 }
 
+// post `/organization/?id=${organizationId}` | `{name:string, address:string, INN:number}` |
+
 function* orgWatcher() {}
 
 // функция watcher

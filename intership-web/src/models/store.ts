@@ -20,7 +20,7 @@ const persist: Middleware<any, RootState> =
 
 const saga = createSagaMiddleware();
 
-// объединяем два редьюсера
+// объединяем редьюсеры
 const rootReducer = combineReducers({
   certs: userReducer,
   identity: identityReducer,

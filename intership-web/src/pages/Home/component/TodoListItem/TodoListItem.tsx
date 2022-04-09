@@ -1,6 +1,7 @@
 import React from 'react';
 import cs from 'classnames';
 import styles from './styles.module.scss';
+
 import iconNext from './assets/next.png';
 import iconChange from './assets/change.png';
 import iconDelete from './assets/delete.png';
