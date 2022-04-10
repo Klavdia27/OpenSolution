@@ -29,6 +29,14 @@ export const useOrgs = (props: Props) => {
     dispatch(addOrg({ ...item }));
   }, [nameOrg, addressOrg, innOrg, dispatch]);
 
+  const deleteOrg = useCallback(
+    (id: number) => (e: React.MouseEvent<HTMLButtonElement>) => {
+      console.log('delete item');
+      console.log(id);
+    },
+    [],
+  );
+
   const handleChangeOrgName = useCallback(
     ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) => {
       setNameOrg(value);
@@ -54,6 +62,7 @@ export const useOrgs = (props: Props) => {
     e.preventDefault();
     addItem();
   };
+
   return {
     handleChangeOrgName,
     handleChangeOrgAddress,
@@ -62,5 +71,6 @@ export const useOrgs = (props: Props) => {
     nameOrg,
     addressOrg,
     innOrg,
+    deleteOrg,
   };
 };
