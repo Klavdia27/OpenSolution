@@ -6,7 +6,7 @@ type Props = {
   anyProp?: any;
 };
 
-type Todo = {
+type OrgType = {
   id: number;
   name: string;
   address: string;
@@ -14,38 +14,38 @@ type Todo = {
   complete: boolean;
 };
 
-export const useTodos = (props: Props) => {
-  const [nameOrgTodo, setNameOrgTodo] = useState<string>('');
-  const [addressOrgTodo, setAddressOrgTodo] = useState<string>('');
-  const [innOrgTodo, setInnOrgTodo] = useState<string>('');
+export const useOrgs = (props: Props) => {
+  const [nameOrg, setNameOrg] = useState<string>('');
+  const [addressOrg, setAddressOrg] = useState<string>('');
+  const [innOrg, setInnOrg] = useState<string>('');
   const dispatch = useAppDispatch();
 
   const addItem = useCallback(() => {
     const item = {
-      name: nameOrgTodo,
-      address: addressOrgTodo,
-      INN: innOrgTodo,
+      name: nameOrg,
+      address: addressOrg,
+      INN: innOrg,
     };
     dispatch(addOrg({ ...item }));
-  }, [nameOrgTodo, addressOrgTodo, innOrgTodo, dispatch]);
+  }, [nameOrg, addressOrg, innOrg, dispatch]);
 
   const handleChangeOrgName = useCallback(
     ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) => {
-      setNameOrgTodo(value);
+      setNameOrg(value);
     },
     [],
   );
 
   const handleChangeOrgAddress = useCallback(
     ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) => {
-      setAddressOrgTodo(value);
+      setAddressOrg(value);
     },
     [],
   );
 
   const handleChangeOrgInn = useCallback(
     ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) => {
-      setInnOrgTodo(value);
+      setInnOrg(value);
     },
     [],
   );
@@ -59,8 +59,8 @@ export const useTodos = (props: Props) => {
     handleChangeOrgAddress,
     handleChangeOrgInn,
     handleSubmit,
-    nameOrgTodo,
-    addressOrgTodo,
-    innOrgTodo,
+    nameOrg,
+    addressOrg,
+    innOrg,
   };
 };

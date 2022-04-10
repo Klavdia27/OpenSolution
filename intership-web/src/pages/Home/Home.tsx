@@ -5,14 +5,14 @@ import { doLogout } from 'Src/models/identity/slice';
 import { Button } from 'Common/UI/Button';
 import { Input } from 'Src/UIElements/Input';
 import { fetchOrg } from 'Src/models/organization/slice';
-import { TodoListOrg } from './component/TodoListOrg/TodoListOrg';
+import { OrgList } from './component/OrgList/OrgList';
 
 import styles from './styles.module.scss';
 import icon from './assets/icon-auth.png';
 import { Modal } from './modal/Modal';
-import { useTodos } from './hooks/useTodos';
+import { useOrgs } from './hooks/useOrgs';
 
-type Todo = {
+type OrgType = {
   id: number;
   name: string;
   address: string;
@@ -20,14 +20,12 @@ type Todo = {
   complete: boolean;
 };
 
-type ToggleTodo = (selectedTodo: Todo) => void;
-type AddTodo = (newTodo: string) => void;
+// type ToggleOrg = (selectedTodo: OrgType) => void;
+// type AddOrg = (newTodo: string) => void;
 
-interface TodoListProps {
-  items: Array<Todo>;
-  todos: Array<Todo>;
+interface OrgListProps {
+  items: Array<OrgType>;
   title: string;
-  onPress: void;
 }
 type Props = {
   someProp?: any;
@@ -49,14 +47,14 @@ export const HomePage: React.FC<Props> = () => {
   }, [dispatch]);
 
   const {
-    nameOrgTodo,
-    addressOrgTodo,
-    innOrgTodo,
+    nameOrg,
+    addressOrg,
+    innOrg,
     handleChangeOrgName,
     handleChangeOrgAddress,
     handleChangeOrgInn,
     handleSubmit,
-  } = useTodos({});
+  } = useOrgs({});
 
   return (
     <div>
@@ -84,7 +82,7 @@ export const HomePage: React.FC<Props> = () => {
             <div className={cs(styles.table_inn)}>INN</div>
             <div className={cs(styles.table_action)}>Actions</div>
           </div>
-          <TodoListOrg items={orgs} />
+          <OrgList items={orgs} />
         </div>
       </div>
 
@@ -94,25 +92,20 @@ export const HomePage: React.FC<Props> = () => {
             <div className={cs(styles.form_boby)}>
               <div>Organization Name</div>
               <Input
-                value={nameOrgTodo}
+                value={nameOrg}
                 name="nameOrgTodo"
                 type="text"
                 onChange={handleChangeOrgName}
               />
               <div>Organization Address</div>
               <Input
-                value={addressOrgTodo}
+                value={addressOrg}
                 name="addressOrgTodo"
                 type="text"
                 onChange={handleChangeOrgAddress}
               />
               <div>Organizations INN</div>
-              <Input
-                value={innOrgTodo}
-                name="innOrgTodo"
-                type="text"
-                onChange={handleChangeOrgInn}
-              />
+              <Input value={innOrg} name="innOrgTodo" type="text" onChange={handleChangeOrgInn} />
             </div>
             <div className={cs(styles.form_footer)}>
               <Button onClick={() => setShowModal(false)} className={cs(styles.btn_canceltodo)}>

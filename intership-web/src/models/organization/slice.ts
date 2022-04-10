@@ -9,7 +9,9 @@ export const initialOrgState: OrgSlice = [];
 // создаем экшен с type 'login'
 export const fetchOrg = createAction('fetchOrg');
 
+// создаем экшен добавления организации
 export const addOrg = createAction<OrganizationCreate>('addOrg');
+
 // создаем identitySlice, объединяет в себе createReducer и createAction
 export const orgSlice = createSlice({
   name: 'org',

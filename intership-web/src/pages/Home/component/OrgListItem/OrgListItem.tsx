@@ -6,17 +6,17 @@ import iconNext from './assets/next.png';
 import iconChange from './assets/change.png';
 import iconDelete from './assets/delete.png';
 
-type Todo = {
+type OrgType = {
   id: number;
   name: string;
   address: string;
   INN: number | string;
 };
-interface TodoListItemProps {
-  todo: Todo;
+interface OrgListItemProps {
+  todo: OrgType;
 }
 
-export const TodoListItem: React.FC<TodoListItemProps> = ({ todo }) => {
+export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
   return (
     <li>
       <label className={cs(styles.complete ? 'complete' : undefined, styles.item_todo)}>
