@@ -19,7 +19,8 @@ interface OrgListItemProps {
 }
 
 export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
-  const { deleteOrg } = useOrgs({});
+  //const { deleteOrg } = useOrgs({});
+  // в button onClick={deleteOrg(todo.id)}
   console.log(todo);
   return (
     <li>
@@ -31,7 +32,7 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
         <div className={cs(styles.actions)}>
           <img className={cs(styles.icon_action)} src={iconNext} alt="icon-next" />
           <img className={cs(styles.icon_action)} src={iconChange} alt="icon-change" />
-          <button onClick={deleteOrg(todo.id)} type="button" className={cs(styles.btn_delete)}>
+          <button type="button" className={cs(styles.btn_delete)}>
             <img className={cs(styles.icon_action)} src={iconDelete} alt="icon-delete" />
           </button>
         </div>

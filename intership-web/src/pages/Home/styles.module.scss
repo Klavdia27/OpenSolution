@@ -1,12 +1,6 @@
 $bg-blue: #0085F9;
 $bg-white: #ffffff;
-.footer {
-    background-color: $bg-blue;
-    width: 100vw;
-    height: 3.375rem;
-    display: flex;
-    justify-content: space-between;
-}
+
 .org {
     max-width: 60%;
     margin: auto;
@@ -17,10 +11,6 @@ $bg-white: #ffffff;
     border: none;
     border-radius: 0.3125rem;
 }
-.button_footer {
-    background-color: $bg-white;
-}
-
 .button_back, .button_add_org {
     background-color: $bg-blue;
     color: $bg-white;

@@ -62,7 +62,7 @@ export const useForm = () => {
 
   useEffect(() => {
     if (identity.isLogin) {
-      navigate('/');
+      navigate('/organization');
     }
   }, [identity.isLogin, navigate]);
 

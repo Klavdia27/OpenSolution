@@ -12,6 +12,8 @@ export const fetchOrg = createAction('fetchOrg');
 // создаем экшен добавления организации
 export const addOrg = createAction<OrganizationCreate>('addOrg');
 
+export const delOrg = createAction<OrganizationCreate>('delOrg');
+
 // создаем identitySlice, объединяет в себе createReducer и createAction
 export const orgSlice = createSlice({
   name: 'org',

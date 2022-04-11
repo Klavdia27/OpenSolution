@@ -10,3 +10,7 @@ export type OrganizationCreate = {
   address: string;
   INN: number | string;
 };
+
+export type IdOrg = {
+  id: number;
+};

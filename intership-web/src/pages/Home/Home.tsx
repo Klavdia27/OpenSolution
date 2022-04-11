@@ -11,6 +11,7 @@ import styles from './styles.module.scss';
 import icon from './assets/icon-auth.png';
 import { Modal } from './modal/Modal';
 import { useOrgs } from './hooks/useOrgs';
+import { FooterPage } from '../component/FooterAllPage/FooterAllPage';
 
 type OrgType = {
   id: number;
@@ -59,12 +60,7 @@ export const HomePage: React.FC<Props> = () => {
   return (
     <div>
       <div>
-        <footer className={cs(styles.footer)}>
-          <img className={cs(styles.icon)} src={icon} alt="icon-auth" />
-          <Button className={cs(styles.button_footer, styles.button)} onClick={handleLogout}>
-            Logout
-          </Button>
-        </footer>
+        <FooterPage />
         <div className={cs(styles.org)}>
           <div className={cs(styles.btns)}>
             <Button className={cs(styles.button_back, styles.button)}>Back</Button>

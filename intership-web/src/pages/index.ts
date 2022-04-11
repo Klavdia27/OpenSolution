@@ -1,4 +1,4 @@
 export { HomePage } from './Home';
-export { CounterPage } from './Counter';
-export { TodosPage } from './Todos';
+export { DivisionsPage } from './DivisionsPage';
 export { LoginPage } from './Login';
+export { EmployeePage } from './EmployeePage';

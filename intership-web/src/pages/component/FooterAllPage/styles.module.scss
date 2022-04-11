@@ -1,0 +1,23 @@
+$bg-blue: #0085F9;
+$bg-white: #ffffff;
+.footer {
+    background-color: $bg-blue;
+    width: 100vw;
+    height: 3.375rem;
+    display: flex;
+    justify-content: space-between;
+    margin: 0;
+    padding: 0;
+}
+.button {
+    margin: 0.5rem 2rem;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 0.3125rem;
+}
+.button_footer {
+    background-color: $bg-white;
+}
+.icon {
+    margin: 0.5rem;
+}
