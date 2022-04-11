@@ -1,0 +1,60 @@
+$bg-blue: #0085F9;
+$bg-white: #ffffff;
+
+.org {
+    max-width: 60%;
+    margin: auto;
+}
+.button {
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 0.3125rem;
+}
+.button_back, .button_add_org {
+    background-color: $bg-blue;
+    color: $bg-white;
+    margin: 0.5rem 0;
+    line-height: 140%
+}
+.item_todo {
+    display: flex;
+    justify-content: left;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    height: 3.6rem;
+    text-align: left;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+.table {
+    display: flex;
+    justify-content: left;
+    font-weight: bold;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    height: 3.6rem;
+    text-align: left;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+.table_ID {
+    width: 6rem;
+}
+.table_name {
+    width: 18rem;
+}
+.table_address {
+    width: 18rem;
+}
+.table_inn {
+    width: 18rem;
+}
+.btns {
+    display: flex;
+    justify-content: space-between;
+}
+.complete {
+    background-color: aquamarine;
+}

@@ -1,5 +1,5 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Organization, OrganizationCreate } from './type';
+import { Organization, OrganizationCreate, IdOrg } from './type';
 
 // задаем типы полей
 type OrgSlice = Array<Organization>;
@@ -12,7 +12,7 @@ export const fetchOrg = createAction('fetchOrg');
 // создаем экшен добавления организации
 export const addOrg = createAction<OrganizationCreate>('addOrg');
 
-export const delOrg = createAction<OrganizationCreate>('delOrg');
+export const delOrg = createAction<IdOrg>('delOrg');
 
 // создаем identitySlice, объединяет в себе createReducer и createAction
 export const orgSlice = createSlice({
@@ -22,10 +22,13 @@ export const orgSlice = createSlice({
     setOrg: (state, action: PayloadAction<Organization[]>) => {
       return [...state, ...action.payload];
     },
+    clearOrgs: () => {
+      return [];
+    },
   },
 });
 
 // деструктуризируем поле actions, которое получаем из slice
-export const { setOrg } = orgSlice.actions;
+export const { setOrg, clearOrgs } = orgSlice.actions;
 // экспортируем созданный редьюсер
 export default orgSlice.reducer;

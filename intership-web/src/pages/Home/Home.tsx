@@ -1,18 +1,14 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import cs from 'classnames';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
-import { doLogout } from 'Src/models/identity/slice';
 import { Button } from 'Common/UI/Button';
 import { Input } from 'Src/UIElements/Input';
 import { fetchOrg } from 'Src/models/organization/slice';
 import { OrgList } from './component/OrgList/OrgList';
-
 import styles from './styles.module.scss';
-import icon from './assets/icon-auth.png';
 import { Modal } from './modal/Modal';
 import { useOrgs } from './hooks/useOrgs';
-import { FooterPage } from '../component/FooterAllPage/FooterAllPage';
-import { usePageSave } from '../component/hooks/useSavePage';
+import { HeaderPage } from '../component/HeaderAllPage/HeaderAllPage';
 
 type OrgType = {
   id: number;
@@ -36,11 +32,7 @@ type Props = {
 export const HomePage: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
   const orgs = useAppSelector((state) => state.org);
-  console.log(orgs);
-
-  const handleLogout = useCallback(() => {
-    dispatch(doLogout());
-  }, [dispatch]);
+  // console.log(orgs);
 
   const [showModal, setShowModal] = useState(false);
 
@@ -58,12 +50,10 @@ export const HomePage: React.FC<Props> = () => {
     handleSubmit,
   } = useOrgs({});
 
-  //const {  } = usePageSave({});
-
   return (
     <div>
       <div>
-        <FooterPage />
+        <HeaderPage />
         <div className={cs(styles.org)}>
           <div className={cs(styles.btns)}>
             <Button className={cs(styles.button_back, styles.button)}>Back</Button>

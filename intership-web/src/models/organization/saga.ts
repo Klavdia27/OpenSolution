@@ -1,6 +1,6 @@
 import { call, delay, put, takeEvery } from 'redux-saga/effects';
 import { API } from 'Src/Api';
-import { addOrg, delOrg, fetchOrg, setOrg } from './slice';
+import { addOrg, clearOrgs, delOrg, fetchOrg, setOrg } from './slice';
 import { IdOrg, Organization, OrganizationCreate } from './type';
 
 type OrgResponse = {
@@ -45,38 +45,32 @@ function* fetchOrgWatcherAdd({ payload }: { payload: OrganizationCreate }) {
   }
 }
 
-// function* fetchOrgWatcherDel({ payload }: { payload: IdOrg }) {
-//   try {
-//     yield call(deleteOrgApi(IdOrg), apiORg, payload);
-//     yield delay(5000);
-//     const { data }: OrgResponse = yield call(API.get, apiORg);
-//     yield put(setOrg(data));
-//     console.log(data);
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+// delete `/organization/${organizationId}`| |
+// localhost/organization/1
+// yield call(API.delete, apiORg + `/${payload.id}`);
 
-// export const deleteUserApi = async (id) =>
-//   await axios.delete(`http://localhost:5000/users/${id}`);
-
-// function* deleteUser(userId) {
-//   try {
-//     const response = yield call(deleteUserApi, userId);
-//     if (response.status === 200) {
-//       yield delay(500);
-//       yield put(deleteUserSuccess(userId));
-//     }
-//   } catch (error) {
-//     yield put(deleteUserError(error));
-//   }
-// }
+function* fetchOrgWatcherDel({ payload }: { payload: IdOrg }) {
+  try {
+    // localhost/organization/1
+    console.log('pay=', payload);
+    const apiORgDel = `/api/organization/${payload.id}`;
+    yield call(API.delete, apiORgDel);
+    // yield call(API.post, apiORg, payload);
+    yield delay(5000);
+    const { data }: OrgResponse = yield call(API.get, apiORg);
+    yield put(clearOrgs());
+    yield put(setOrg(data));
+    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 // функция watcher
 function* getOrgSaga() {
   yield takeEvery(addOrg, fetchOrgWatcherAdd);
   yield takeEvery(fetchOrg, fetchOrgWorker);
-  // yield takeEvery(delOrg, fetchOrgWatcherDel);
+  yield takeEvery(delOrg, fetchOrgWatcherDel);
 }
 
 export default getOrgSaga;

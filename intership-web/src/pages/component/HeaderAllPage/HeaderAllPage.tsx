@@ -11,7 +11,7 @@ type Props = {
   someProp?: any;
 };
 
-export const FooterPage: React.FC<Props> = () => {
+export const HeaderPage: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
 
   const handleLogout = useCallback(() => {

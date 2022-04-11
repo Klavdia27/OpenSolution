@@ -1,10 +1,10 @@
 import React from 'react';
-import { FooterPage } from '../component/FooterAllPage';
+import { HeaderPage } from '../component/HeaderAllPage';
 
 export const DivisionsPage: React.FC = () => {
   return (
     <div>
-      <FooterPage />
+      <HeaderPage />
       <div>division page</div>
     </div>
   );

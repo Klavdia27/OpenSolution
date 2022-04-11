@@ -33,14 +33,12 @@ export const identitySlice = createSlice({
         ...state,
         isLogin: action.payload,
       };
-      // state.isLogin = action.payload;
     },
     setLoading: (state, action: PayloadAction<boolean>) => {
       return {
         ...state,
         isLoading: action.payload,
       };
-      //state.isLoading = action.payload;
     },
   },
 });
