@@ -12,6 +12,7 @@ import icon from './assets/icon-auth.png';
 import { Modal } from './modal/Modal';
 import { useOrgs } from './hooks/useOrgs';
 import { FooterPage } from '../component/FooterAllPage/FooterAllPage';
+import { usePageSave } from '../component/hooks/useSavePage';
 
 type OrgType = {
   id: number;
@@ -56,6 +57,8 @@ export const HomePage: React.FC<Props> = () => {
     handleChangeOrgInn,
     handleSubmit,
   } = useOrgs({});
+
+  //const {  } = usePageSave({});
 
   return (
     <div>
