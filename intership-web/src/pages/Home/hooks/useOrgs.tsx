@@ -1,6 +1,6 @@
-import { ChangeEventHandler, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useAppDispatch } from 'Src/hooks';
-import { addOrg, clearOrgs, delOrg } from 'Src/models/organization/slice';
+import { addOrg, delOrg } from 'Src/models/organization/slice';
 import { IdOrg } from 'Src/models/organization/type';
 
 type Props = {

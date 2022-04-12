@@ -2,15 +2,11 @@ import React from 'react';
 import cs from 'classnames';
 import styles from './styles.module.scss';
 
-export const Modal: React.FC<{
+export const DivModal: React.FC<{
   title: string;
   children?: React.ReactElement;
   onClose: () => void;
 }> = ({ title, children, onClose }) => {
-  const handleClose = (e: React.MouseEvent<HTMLDivElement>) => {
-    e.preventDefault();
-    onClose();
-  };
   const handleCloseX = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     onClose();
@@ -18,7 +14,6 @@ export const Modal: React.FC<{
 
   return (
     <div className={cs(styles.modal)}>
-      {/*<div className={cs(styles.background)} onClick={handleClose} role="???" />*/}
       <div className={cs(styles.window)}>
         <div className={cs(styles.header)}>
           <h2 className={cs(styles.title_modal)}> {title} </h2>

@@ -6,9 +6,9 @@
   "organization": [
     {
       "id": 1,
-      "name": "namefasd",
-      "address": "asdfasdf",
-      "INN": 1234356789
+      "name": "Jagsd",
+      "address": "2-asdga",
+      "INN": "2345678904"
     },
     {
       "id": 2,
@@ -24,25 +24,33 @@
     },
     {
       "id": 4,
-      "INN": null
+      "name": "sfewra",
+      "address": "areb",
+      "INN": 2374534
     },
     {
       "id": 5,
-      "name": "Jek",
-      "address": "Minsk",
-      "INN": 87654
+      "name": "sfera",
+      "address": "areb",
+      "INN": 234
     },
     {
       "id": 6,
-      "name": "fifa",
-      "address": "tyre",
-      "INN": 22222222
+      "name": "sfera",
+      "address": "areb",
+      "INN": 234
     },
     {
       "id": 7,
-      "name": "eee",
-      "address": "eee",
-      "INN": null
+      "name": "tyre",
+      "address": "tyre",
+      "INN": 123456
+    },
+    {
+      "id": 8,
+      "name": "privet",
+      "address": "privet",
+      "INN": 999
     }
   ],
   "division": [
@@ -53,10 +61,22 @@
       "phone": "123456"
     },
     {
-      "id": 6,
-      "id_organization": 2,
-      "name": "asdasha",
-      "phone": "+4353452"
+      "id": 2,
+      "id_organization": 1,
+      "name": "ret",
+      "phone": "ret"
+    },
+    {
+      "id": 4,
+      "id_organization": 1,
+      "name": "kll",
+      "phone": "1235"
+    },
+    {
+      "id": 5,
+      "id_organization": 1,
+      "name": "tima",
+      "phone": "tima"
     }
   ],
   "employee": [

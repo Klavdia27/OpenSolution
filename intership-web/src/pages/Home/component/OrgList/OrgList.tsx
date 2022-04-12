@@ -7,6 +7,5 @@ interface OrgListProps {
 }
 
 export const OrgList: React.FC<OrgListProps> = ({ items }) => {
-  console.log(items);
   return <ul>{items && items.map((todo) => <OrgListItem key={todo.id} todo={todo} />)}</ul>;
 };

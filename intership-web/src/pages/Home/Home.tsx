@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import cs from 'classnames';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
 import { Button } from 'Common/UI/Button';
@@ -6,7 +6,7 @@ import { Input } from 'Src/UIElements/Input';
 import { fetchOrg } from 'Src/models/organization/slice';
 import { OrgList } from './component/OrgList/OrgList';
 import styles from './styles.module.scss';
-import { Modal } from './modal/Modal';
+import { OrgModal } from './orgModal/OrgModal';
 import { useOrgs } from './hooks/useOrgs';
 import { HeaderPage } from '../component/HeaderAllPage/HeaderAllPage';
 
@@ -76,7 +76,7 @@ export const HomePage: React.FC<Props> = () => {
       </div>
 
       {showModal && (
-        <Modal title="Add Organization" onClose={() => setShowModal(false)}>
+        <OrgModal title="Add Organization" onClose={() => setShowModal(false)}>
           <form className={cs(styles.form_addtodo)}>
             <div className={cs(styles.form_boby)}>
               <div>Organization Name</div>
@@ -105,7 +105,7 @@ export const HomePage: React.FC<Props> = () => {
               </Button>
             </div>
           </form>
-        </Modal>
+        </OrgModal>
       )}
     </div>
   );

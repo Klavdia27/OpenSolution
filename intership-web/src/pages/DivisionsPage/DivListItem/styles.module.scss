@@ -28,23 +28,15 @@ li {
     align-items: center;
     padding: 0 0.5rem;
 }
-.table_ID {
+.table_id {
     width: 6rem;
 }
-.table_name {
-    width: 18rem;
-}
-.table_address {
-    width: 18rem;
-}
-.table_inn {
+.table_idorg, .table_name, .table_phone {
     width: 18rem;
 }
 .icon_action {
     padding: 0 0.5rem;
-}
-.complete {
-    background-color: aquamarine;
+
 }
 .icon {
     width: 2rem;

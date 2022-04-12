@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from 'Src/UIElements/Button';
 import { HeaderPage } from 'Src/pages/component/HeaderAllPage';
 import { useAppSelector } from 'Src/hooks';
@@ -9,6 +9,8 @@ import { OrgList } from '../OrgList';
 
 export const ChildOrg: React.FC = () => {
   const orgs = useAppSelector((state) => state.org);
+  const navigate = useNavigate();
+
   const { id } = useParams();
   console.log(id);
   const [showModal, setShowModal] = useState(false);
@@ -17,7 +19,9 @@ export const ChildOrg: React.FC = () => {
       <HeaderPage />
       <div className={cs(styles.org)}>
         <div className={cs(styles.btns)}>
-          <Button className={cs(styles.button_back, styles.button)}>Back</Button>
+          <Button className={cs(styles.button_back, styles.button)} onClick={() => navigate(-1)}>
+            Back
+          </Button>
           <Button
             className={cs(styles.button_add_org, styles.button)}
             onClick={() => setShowModal(true)}

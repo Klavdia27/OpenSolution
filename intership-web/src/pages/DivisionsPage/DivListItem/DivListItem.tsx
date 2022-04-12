@@ -1,48 +1,41 @@
 import React, { useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { clearOrgs } from 'Src/models/organization/slice';
-import { fetchDiv } from 'Src/models/division/slice';
-import { IdOrg } from 'Src/models/organization/type';
+import { clearDiv } from 'Src/models/division/slice';
+import { IDivision } from 'Src/models/division/type';
+import { useAppDispatch } from 'Src/hooks';
 import cs from 'classnames';
 import styles from './styles.module.scss';
 import iconNext from './assets/next.png';
 import iconChange from './assets/change.png';
 import iconDelete from './assets/delete.png';
-import { useAppDispatch } from '../../../../hooks';
-import { useOrgs } from '../../hooks/useOrgs';
+import { useDivs } from '../hooks/useDivs';
 
-type OrgType = {
-  id: number;
-  name: string;
-  address: string;
-  INN: number | string;
-};
-
-interface OrgListItemProps {
-  todo: OrgType;
+interface DivListItemProps {
+  todo: IDivision;
 }
 
-export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
+export const DivListItem: React.FC<DivListItemProps> = ({ todo }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
 
   const nextPage = useCallback(
     (event: React.MouseEvent<HTMLButtonElement>) => {
-      navigate('/division');
-      dispatch(clearOrgs());
+      console.log('press but division next');
+      navigate('/employee');
+      dispatch(clearDiv());
     },
     [navigate, dispatch],
   );
 
-  const { deleteOrg } = useOrgs({});
+  const { deleteDiv } = useDivs({});
 
   return (
     <li>
       <div className={cs(styles.item_todo)}>
-        <div className={cs(styles.table_ID)}>{todo.id}</div>
+        <div className={cs(styles.table_id)}>{todo.id}</div>
+        <div className={cs(styles.table_idorg)}>{todo.id_organization}</div>
         <div className={cs(styles.table_name)}>{todo.name}</div>
-        <div className={cs(styles.table_address)}>{todo.address}</div>
-        <div className={cs(styles.table_inn)}>{todo.INN}</div>
+        <div className={cs(styles.table_phone)}>{todo.phone}</div>
         <div className={cs(styles.actions)}>
           <button type="button" className={cs(styles.btn_next)} onClick={nextPage}>
             <img className={cs(styles.icon_action)} src={iconNext} alt="icon-next" />
@@ -51,7 +44,7 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
           <button
             type="button"
             className={cs(styles.btn_delete)}
-            onClick={deleteOrg({ id: todo.id })}
+            onClick={deleteDiv({ id: todo.id })}
           >
             <img className={cs(styles.icon_action)} src={iconDelete} alt="icon-delete" />
           </button>

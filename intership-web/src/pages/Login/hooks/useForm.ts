@@ -2,7 +2,6 @@ import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
 import { doLogin } from 'Src/models/identity/slice';
-import { namePage } from 'Src/models/namePage/slice';
 
 // определяем максимальную длину введеной строки в логин и пароль.
 const maxLength = (str: string) => str.length > 0;

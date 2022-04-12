@@ -1,7 +1,7 @@
 $bg-blue: #0085F9;
 $bg-white: #ffffff;
 
-.org {
+.div {
     max-width: 60%;
     margin: auto;
 }
@@ -39,18 +39,15 @@ $bg-white: #ffffff;
     align-items: center;
     padding: 0 0.5rem;
 }
-.table_ID {
+.table_id {
     width: 6rem;
 }
-.table_name, .table_address, .table_inn  {
+.table_idorg, .table_name, .table_phone  {
     width: 18rem;
 }
 .btns {
     display: flex;
     justify-content: space-between;
-}
-.complete {
-    background-color: aquamarine;
 }
 .form_addtodo {
     display: flex;
