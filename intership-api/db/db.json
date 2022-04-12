@@ -65,18 +65,6 @@
       "id_organization": 1,
       "name": "ret",
       "phone": "ret"
-    },
-    {
-      "id": 4,
-      "id_organization": 1,
-      "name": "kll",
-      "phone": "1235"
-    },
-    {
-      "id": 5,
-      "id_organization": 1,
-      "name": "tima",
-      "phone": "tima"
     }
   ],
   "employee": [

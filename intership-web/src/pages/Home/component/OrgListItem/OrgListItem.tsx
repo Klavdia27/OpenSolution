@@ -27,8 +27,9 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
   const dispatch = useAppDispatch();
 
   const nextPage = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
-      navigate('/division');
+    (id: IdOrg) => (event: React.MouseEvent<HTMLButtonElement>) => {
+      console.log(id);
+      navigate(`/division/?id=${id.id}`);
       dispatch(clearOrgs());
     },
     [navigate, dispatch],
@@ -44,7 +45,7 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
         <div className={cs(styles.table_address)}>{todo.address}</div>
         <div className={cs(styles.table_inn)}>{todo.INN}</div>
         <div className={cs(styles.actions)}>
-          <button type="button" className={cs(styles.btn_next)} onClick={nextPage}>
+          <button type="button" className={cs(styles.btn_next)} onClick={nextPage({ id: todo.id })}>
             <img className={cs(styles.icon_action)} src={iconNext} alt="icon-next" />
           </button>
           <img className={cs(styles.icon_action)} src={iconChange} alt="icon-change" />
