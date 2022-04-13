@@ -1,7 +1,8 @@
 import { ChangeEventHandler, useCallback, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'Src/hooks';
-import { addDiv, delDiv } from 'Src/models/division/slice';
-import { IdDiv } from 'Src/models/division/type';
+import { addDiv, delDiv, fetchDiv, setDiv } from 'Src/models/division/slice';
+import { IdDivDel } from 'Src/models/division/type';
 import { addOrg, clearOrgs, delOrg } from 'Src/models/organization/slice';
 import { IdOrg } from 'Src/models/organization/type';
 
@@ -9,11 +10,8 @@ type Props = {
   anyProp?: any;
 };
 
-type IDivision = {
-  id: number;
-  id_organization: number;
-  name: string;
-  phone: number;
+type idPar = {
+  idurl: string | undefined;
 };
 
 export const useDivs = (props: Props) => {
@@ -21,20 +19,24 @@ export const useDivs = (props: Props) => {
   const [phoneDiv, setPhoneDiv] = useState<string>('');
   const dispatch = useAppDispatch();
 
+  const { idurl } = useParams<idPar>();
+  const idNumber = Number(idurl);
+
   const addItemDiv = useCallback(() => {
     const itemDiv = {
-      id_organization: 1,
+      id_organization: idNumber,
       name: nameDiv,
       phone: phoneDiv,
     };
     dispatch(addDiv({ ...itemDiv }));
-  }, [nameDiv, phoneDiv, dispatch]);
+  }, [idNumber, nameDiv, phoneDiv, dispatch]);
 
   const deleteDiv = useCallback(
-    (id: IdDiv) => (e: React.MouseEvent<HTMLButtonElement>) => {
+    (id: IdDivDel) => (e: React.MouseEvent<HTMLButtonElement>) => {
       console.log('delete divis');
       console.log(id);
       dispatch(delDiv(id));
+      // dispatch(setDiv());
     },
     [dispatch],
   );
@@ -56,7 +58,7 @@ export const useDivs = (props: Props) => {
   const handleSubmitDiv = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     addItemDiv();
-    console.log(45);
+    //console.log(45);
   };
 
   return {

@@ -29,7 +29,7 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
   const nextPage = useCallback(
     (id: IdOrg) => (event: React.MouseEvent<HTMLButtonElement>) => {
       console.log(id);
-      navigate(`/division/?id=${id.id}`);
+      navigate(`/division/${id.id}`);
       dispatch(clearOrgs());
     },
     [navigate, dispatch],

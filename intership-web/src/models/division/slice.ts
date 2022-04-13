@@ -1,14 +1,13 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IdOrg } from '../organization/type';
-import { IdDiv, IDivision, IDivisionCreate } from './type';
+import { IdOrg, IdDivDel, IDivision, IDivisionCreate } from './type';
 
 type DivSlice = Array<IDivision>;
 
 export const initialDivState: DivSlice = [];
 
-export const fetchDiv = createAction('fetchDiv');
+export const fetchDiv = createAction<IdOrg>('fetchDiv');
 export const addDiv = createAction<IDivisionCreate>('addDiv');
-export const delDiv = createAction<IdDiv>('delDiv');
+export const delDiv = createAction<IdDivDel>('delDiv');
 
 export const divSlice = createSlice({
   name: 'div',

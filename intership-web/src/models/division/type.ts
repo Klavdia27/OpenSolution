@@ -11,6 +11,10 @@ export type IDivisionCreate = {
   phone: number | string;
 };
 
-export type IdDiv = {
+export type IdOrg = {
+  id_organization: number;
+};
+
+export type IdDivDel = {
   id: number;
 };

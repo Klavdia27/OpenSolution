@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
 import { Button } from 'Src/UIElements/Button';
 import { Input } from 'Src/UIElements/Input';
 import cs from 'classnames';
@@ -10,6 +11,10 @@ import { useDivs } from './hooks/useDivs';
 import { DivList } from './DivList';
 import { DivModal } from './DivModal';
 
+type idPar = {
+  idurl: string | undefined;
+};
+
 export const DivisionsPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useAppDispatch();
@@ -17,11 +22,13 @@ export const DivisionsPage: React.FC = () => {
     {},
   );
   const divs = useAppSelector((state) => state.div);
-  // console.log('divs=', divs);
+
+  const { idurl } = useParams<idPar>();
+  const prodId = Number(`${idurl}`);
 
   useEffect(() => {
-    dispatch(fetchDiv());
-  }, [dispatch]);
+    dispatch(fetchDiv({ id_organization: prodId }));
+  }, [prodId, dispatch]);
 
   return (
     <div>

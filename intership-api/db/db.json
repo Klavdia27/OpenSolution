@@ -11,28 +11,10 @@
       "INN": "2345678904"
     },
     {
-      "id": 2,
-      "name": "Jagsd",
-      "address": "2-asdga",
-      "INN": "2345678904"
-    },
-    {
       "id": 3,
       "name": "234",
       "address": "t234t",
       "INN": 1234356789
-    },
-    {
-      "id": 4,
-      "name": "sfewra",
-      "address": "areb",
-      "INN": 2374534
-    },
-    {
-      "id": 5,
-      "name": "sfera",
-      "address": "areb",
-      "INN": 234
     },
     {
       "id": 6,
@@ -47,10 +29,16 @@
       "INN": 123456
     },
     {
-      "id": 8,
-      "name": "privet",
-      "address": "privet",
-      "INN": 999
+      "id": 9,
+      "name": "gg",
+      "address": "ff",
+      "INN": 222
+    },
+    {
+      "id": 10,
+      "name": "gg",
+      "address": "ff",
+      "INN": 222
     }
   ],
   "division": [
@@ -61,10 +49,70 @@
       "phone": "123456"
     },
     {
-      "id": 2,
+      "id": 3,
       "id_organization": 1,
-      "name": "ret",
+      "name": "rerr",
+      "phone": "erer"
+    },
+    {
+      "id": 8,
+      "id_organization": 1,
+      "name": "rerr",
       "phone": "ret"
+    },
+    {
+      "id": 9,
+      "id_organization": 1,
+      "name": "rerr",
+      "phone": "hhh"
+    },
+    {
+      "id": 10,
+      "id_organization": 3,
+      "name": "rew",
+      "phone": "were"
+    },
+    {
+      "id": 10,
+      "id_organization": 2,
+      "name": "wewww",
+      "phone": "wwww"
+    },
+    {
+      "id": 8,
+      "id_organization": 3,
+      "name": "tri",
+      "phone": "tri"
+    },
+    {
+      "id": 9,
+      "id_organization": 3,
+      "name": "triw",
+      "phone": "triw"
+    },
+    {
+      "id": 9,
+      "id_organization": 7,
+      "name": "dgsd",
+      "phone": "sdfgsd"
+    },
+    {
+      "id": 10,
+      "id_organization": 7,
+      "name": "sdf",
+      "phone": "dddd"
+    },
+    {
+      "id": 11,
+      "id_organization": 7,
+      "name": "uuu",
+      "phone": "uuuuu"
+    },
+    {
+      "id": 12,
+      "id_organization": 7,
+      "name": "wwwwwww",
+      "phone": "qweqwrwer"
     }
   ],
   "employee": [

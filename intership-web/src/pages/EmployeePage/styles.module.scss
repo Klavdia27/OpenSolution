@@ -1,0 +1,89 @@
+$bg-blue: #0085F9;
+$bg-white: #ffffff;
+
+.div {
+    max-width: 60%;
+    margin: auto;
+}
+.button {
+    margin: 0.5rem 1rem;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 0.3125rem;
+}
+.button_back, .button_add_org {
+    background-color: $bg-blue;
+    color: $bg-white;
+    margin: 0.5rem 0;
+    line-height: 140%
+}
+.item_todo {
+    display: flex;
+    justify-content: left;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    height: 3.6rem;
+    text-align: left;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+
+.table {
+    display: flex;
+    justify-content: left;
+    font-weight: bold;
+    border-top: 1px solid grey;
+    border-bottom: 1px solid grey;
+    height: 3.6rem;
+    text-align: left;
+    align-items: center;
+    padding: 0 0.5rem;
+}
+.table_id {
+    width: 4rem;
+}
+.table_iddiv {
+    width: 6rem;
+}
+.table_fio, .table_address, .table_position, .table_actions  {
+    width: 15rem;
+}
+.btns {
+    display: flex;
+    justify-content: space-between;
+}
+.form_addtodo {
+    display: flex;
+    margin: auto;
+    max-width: 60%;
+    flex-direction: column;
+    padding: 0 1.1rem;
+    max-width: 30rem;
+}
+.form_title {
+    font-size: 1.5rem;
+    letter-spacing: 0.01em;
+    font-weight: 600;
+    padding: 1.1rem 0;
+    border-bottom: 1px solid grey;
+}
+.form_boby {
+    padding: 1.1rem 0;
+}
+.form_footer {
+    padding: 1.1rem 0;
+    border-top: 1px solid grey;
+}
+
+.btn_canceltodo {
+    background-color: $bg-white;
+    border: none;
+    margin: 0 2rem;
+}
+.btn_addtodo {
+    background-color: #00A550;
+    padding: 0.5rem 0.75rem;
+    border: none;
+    border-radius: 0.1875rem;
+    color: $bg-white;
+}

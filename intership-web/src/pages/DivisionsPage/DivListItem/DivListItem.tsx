@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { clearDiv } from 'Src/models/division/slice';
 import { IDivision } from 'Src/models/division/type';
 import { useAppDispatch } from 'Src/hooks';
+import { IdDiv } from 'Src/models/employee/type';
 import cs from 'classnames';
 import styles from './styles.module.scss';
 import iconNext from './assets/next.png';
@@ -19,9 +20,9 @@ export const DivListItem: React.FC<DivListItemProps> = ({ todo }) => {
   const dispatch = useAppDispatch();
 
   const nextPage = useCallback(
-    (event: React.MouseEvent<HTMLButtonElement>) => {
+    (id: IdDiv) => (event: React.MouseEvent<HTMLButtonElement>) => {
       console.log('press but division next');
-      navigate('/employee');
+      navigate(`/employee/${id.id_division}`);
       dispatch(clearDiv());
     },
     [navigate, dispatch],
@@ -37,7 +38,11 @@ export const DivListItem: React.FC<DivListItemProps> = ({ todo }) => {
         <div className={cs(styles.table_name)}>{todo.name}</div>
         <div className={cs(styles.table_phone)}>{todo.phone}</div>
         <div className={cs(styles.actions)}>
-          <button type="button" className={cs(styles.btn_next)} onClick={nextPage}>
+          <button
+            type="button"
+            className={cs(styles.btn_next)}
+            onClick={nextPage({ id_division: todo.id })}
+          >
             <img className={cs(styles.icon_action)} src={iconNext} alt="icon-next" />
           </button>
           <img className={cs(styles.icon_action)} src={iconChange} alt="icon-change" />

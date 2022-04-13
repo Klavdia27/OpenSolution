@@ -1,8 +1,7 @@
 import { call, delay, put, takeEvery } from 'redux-saga/effects';
 import { API } from 'Src/Api';
-import { IdOrg } from '../organization/type';
 import { addDiv, clearDiv, delDiv, fetchDiv, setDiv } from './slice';
-import { IdDiv, IDivision, IDivisionCreate } from './type';
+import { IdOrg, IdDivDel, IDivisionCreate } from './type';
 
 type DivResponse = {
   data: Array<{
@@ -18,12 +17,12 @@ type DivResponse = {
 // delete `/division/?id=${divisionId}`| |
 // put `/division/?id=${divisionId}`| `{name:string, phone:number}` |
 
-const apiDiv = `/api/division/?id=1`;
+const apiDiv = `/api/division/?id=`;
 
-function* fetchDivWorker() {
+function* fetchDivWorker({ payload }: { payload: IdOrg }) {
   try {
-    const { data }: DivResponse = yield call(API.get, apiDiv);
-    // console.log('data=', data);
+    const apiDivGet = `/api/division/?id=${payload.id_organization}`;
+    const { data }: DivResponse = yield call(API.get, apiDivGet);
     yield put(clearDiv());
     yield put(setDiv(data));
   } catch (error) {
@@ -35,7 +34,8 @@ function* fetchDivWorkerAdd({ payload }: { payload: IDivisionCreate }) {
   try {
     yield call(API.post, apiDiv, payload);
     yield delay(5000);
-    const { data }: DivResponse = yield call(API.get, apiDiv);
+    const apiDivGet = `/api/division/?id=${payload.id_organization}`;
+    const { data }: DivResponse = yield call(API.get, apiDivGet);
     yield put(clearDiv());
     yield put(setDiv(data));
   } catch (error) {
@@ -43,7 +43,7 @@ function* fetchDivWorkerAdd({ payload }: { payload: IDivisionCreate }) {
   }
 }
 
-function* fetchDivWorkerDel({ payload }: { payload: IdDiv }) {
+function* fetchDivWorkerDel({ payload }: { payload: IdDivDel }) {
   try {
     const apiDivDel = `/api/division/?id=${payload.id}`;
     yield call(API.delete, apiDivDel);
@@ -51,7 +51,6 @@ function* fetchDivWorkerDel({ payload }: { payload: IdDiv }) {
     const { data }: DivResponse = yield call(API.get, apiDiv);
     yield put(clearDiv());
     yield put(setDiv(data));
-    console.log(data);
   } catch (error) {
     console.error(error);
   }
