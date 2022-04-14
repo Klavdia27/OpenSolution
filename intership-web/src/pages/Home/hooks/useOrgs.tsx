@@ -7,14 +7,6 @@ type Props = {
   anyProp?: any;
 };
 
-type OrgType = {
-  id: number;
-  name: string;
-  address: string;
-  inn: string;
-  complete: boolean;
-};
-
 export const useOrgs = (props: Props) => {
   const [nameOrg, setNameOrg] = useState<string>('');
   const [addressOrg, setAddressOrg] = useState<string>('');
@@ -60,8 +52,7 @@ export const useOrgs = (props: Props) => {
     [],
   );
 
-  const handleSubmit = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handleSubmit = () => {
     addItem();
   };
 

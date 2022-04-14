@@ -49,7 +49,7 @@ export const DivListItem: React.FC<DivListItemProps> = ({ todo }) => {
           <button
             type="button"
             className={cs(styles.btn_delete)}
-            onClick={deleteDiv({ id: todo.id })}
+            onClick={deleteDiv({ id: todo.id, idOrganization: todo.id_organization })}
           >
             <img className={cs(styles.icon_action)} src={iconDelete} alt="icon-delete" />
           </button>

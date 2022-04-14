@@ -17,4 +17,5 @@ export type IdOrg = {
 
 export type IdDivDel = {
   id: number;
+  idOrganization: number;
 };

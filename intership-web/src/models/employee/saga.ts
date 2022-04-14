@@ -1,7 +1,7 @@
 import { call, delay, put, takeEvery } from 'redux-saga/effects';
 import { API } from 'Src/Api';
-import { clearEmployee, fetchEmployee, setEmployee } from './slice';
-import { IdDiv } from './type';
+import { addEmployee, clearEmployee, delEmployee, fetchEmployee, setEmployee } from './slice';
+import { EmployeeDel, IdDiv, IEmployeeCreate } from './type';
 
 type EmployeeResponse = {
   data: Array<{
@@ -18,13 +18,13 @@ type EmployeeResponse = {
 // delete `/employee/?id=${employeeId}`| |
 // put `/employee/?id=${employeeId}`| `{FIO:string, address:number, position:number}` |
 
-const apiDiv = `/api/employee/?id=`;
+const apiEmp = `/api/employee/?id=`;
 
 function* fetchEmployeeWorker({ payload }: { payload: IdDiv }) {
   try {
     const apiDivGet = `/api/employee/?id=${payload.id_division}`;
     const { data }: EmployeeResponse = yield call(API.get, apiDivGet);
-    console.log('saga=', data);
+    // console.log('saga=', data);
     yield put(clearEmployee());
     yield put(setEmployee(data));
   } catch (error) {
@@ -32,36 +32,38 @@ function* fetchEmployeeWorker({ payload }: { payload: IdDiv }) {
   }
 }
 
-// function* fetchDivWorkerAdd({ payload }: { payload: IDivisionCreate }) {
-//   try {
-//     yield call(API.post, apiDiv, payload);
-//     yield delay(5000);
-//     const apiDivGet = `/api/division/?id=${payload.id_organization}`;
-//     const { data }: DivResponse = yield call(API.get, apiDivGet);
-//     yield put(clearDiv());
-//     yield put(setDiv(data));
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+function* fetchEmployeeWorkerAdd({ payload }: { payload: IEmployeeCreate }) {
+  try {
+    yield call(API.post, apiEmp, payload);
+    yield delay(5000);
+    const apiEmpGet = `/api/employee/?id=${payload.id_division}`;
+    const { data }: EmployeeResponse = yield call(API.get, apiEmpGet);
+    yield put(clearEmployee());
+    yield put(setEmployee(data));
+  } catch (error) {
+    console.error(error);
+  }
+}
 
-// function* fetchDivWorkerDel({ payload }: { payload: IdDivDel }) {
-//   try {
-//     const apiDivDel = `/api/division/?id=${payload.id}`;
-//     yield call(API.delete, apiDivDel);
-//     yield delay(5000);
-//     const { data }: DivResponse = yield call(API.get, apiDiv);
-//     yield put(clearDiv());
-//     yield put(setDiv(data));
-//   } catch (error) {
-//     console.error(error);
-//   }
-// }
+function* fetchEmployeeWorkerDel({ payload }: { payload: EmployeeDel }) {
+  try {
+    const apiEmpDel = `/api/employee/?id=${payload.id}`;
+    yield call(API.delete, apiEmpDel);
+    yield delay(5000);
+    const apiEmpGet = `/api/employee/?id=${payload.idDivision}`;
+    yield delay(5000);
+    const { data }: EmployeeResponse = yield call(API.get, apiEmpGet);
+    yield put(clearEmployee());
+    yield put(setEmployee(data));
+  } catch (error) {
+    console.error(error);
+  }
+}
 
 function* getEmployeeSaga() {
   yield takeEvery(fetchEmployee, fetchEmployeeWorker);
-  //   yield takeEvery(addDiv, fetchDivWorkerAdd);
-  //   yield takeEvery(delDiv, fetchDivWorkerDel);
+  yield takeEvery(addEmployee, fetchEmployeeWorkerAdd);
+  yield takeEvery(delEmployee, fetchEmployeeWorkerDel);
 }
 
 export default getEmployeeSaga;

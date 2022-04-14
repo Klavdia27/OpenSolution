@@ -1,3 +1,4 @@
+$bg-white: #ffffff;
 .modal {
     z-index: 2000;
     position: fixed;
@@ -5,8 +6,6 @@
     right: 0;
     bottom: 0;
     left: 0;
-
-    
     .background {
         background-color: rgba(0, 0, 0, 0.5);
         position: fixed;
@@ -36,5 +35,17 @@
     }
     .title_modal {
         color: black;
+    }
+    .btn_canceltodo {
+        background-color: $bg-white;
+        border: none;
+        margin: 0 2rem;
+    }
+    .btn_addtodo {
+        background-color: #00A550;
+        padding: 0.5rem 0.75rem;
+        border: none;
+        border-radius: 0.1875rem;
+        color: $bg-white;
     }
 }

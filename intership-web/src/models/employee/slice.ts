@@ -1,13 +1,13 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IdDiv, IEmployee } from './type';
+import { EmployeeDel, IdDiv, IEmployee, IEmployeeCreate } from './type';
 
 type EmployeeSlice = Array<IEmployee>;
 
 export const initialEmployeeState: EmployeeSlice = [];
 
-export const fetchEmployee = createAction<IdDiv>('fetchDiv');
-//export const addEmployee = createAction<IDivisionCreate>('addDiv');
-//export const delEmployee = createAction<IdDivDel>('delDiv');
+export const fetchEmployee = createAction<IdDiv>('fetchEmployee');
+export const addEmployee = createAction<IEmployeeCreate>('addEmployee');
+export const delEmployee = createAction<EmployeeDel>('DelEmployee');
 
 export const employeeSlice = createSlice({
   name: 'employee',

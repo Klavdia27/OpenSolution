@@ -9,22 +9,20 @@ import styles from './styles.module.scss';
 import { OrgModal } from './orgModal/OrgModal';
 import { useOrgs } from './hooks/useOrgs';
 import { HeaderPage } from '../component/HeaderAllPage/HeaderAllPage';
+import { OrgModalContent } from './orgModal';
 
-type OrgType = {
-  id: number;
-  name: string;
-  address: string;
-  inn: string;
-  complete: boolean;
-};
+// type OrgType = {
+//   id: number;
+//   name: string;
+//   address: string;
+//   inn: string;
+//   complete: boolean;
+// };
 
-// type ToggleOrg = (selectedTodo: OrgType) => void;
-// type AddOrg = (newTodo: string) => void;
-
-interface OrgListProps {
-  items: Array<OrgType>;
-  title: string;
-}
+// interface OrgListProps {
+//   items: Array<OrgType>;
+//   title: string;
+// }
 type Props = {
   someProp?: any;
 };
@@ -32,23 +30,12 @@ type Props = {
 export const HomePage: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
   const orgs = useAppSelector((state) => state.org);
-  // console.log(orgs);
 
   const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     dispatch(fetchOrg());
   }, [dispatch]);
-
-  const {
-    nameOrg,
-    addressOrg,
-    innOrg,
-    handleChangeOrgName,
-    handleChangeOrgAddress,
-    handleChangeOrgInn,
-    handleSubmit,
-  } = useOrgs({});
 
   return (
     <div>
@@ -77,34 +64,7 @@ export const HomePage: React.FC<Props> = () => {
 
       {showModal && (
         <OrgModal title="Add Organization" onClose={() => setShowModal(false)}>
-          <form className={cs(styles.form_addtodo)}>
-            <div className={cs(styles.form_boby)}>
-              <div>Organization Name</div>
-              <Input
-                value={nameOrg}
-                name="nameOrgTodo"
-                type="text"
-                onChange={handleChangeOrgName}
-              />
-              <div>Organization Address</div>
-              <Input
-                value={addressOrg}
-                name="addressOrgTodo"
-                type="text"
-                onChange={handleChangeOrgAddress}
-              />
-              <div>Organizations INN</div>
-              <Input value={innOrg} name="innOrgTodo" type="text" onChange={handleChangeOrgInn} />
-            </div>
-            <div className={cs(styles.form_footer)}>
-              <Button onClick={() => setShowModal(false)} className={cs(styles.btn_canceltodo)}>
-                Cancel
-              </Button>
-              <Button onClick={handleSubmit} className={cs(styles.btn_addtodo)}>
-                Add
-              </Button>
-            </div>
-          </form>
+          <OrgModalContent onClose={() => setShowModal(false)} />
         </OrgModal>
       )}
     </div>

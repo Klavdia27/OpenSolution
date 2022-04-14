@@ -11,7 +11,7 @@ type Props = {
 };
 
 type idPar = {
-  idurl: string | undefined;
+  idorg: string | undefined;
 };
 
 export const useDivs = (props: Props) => {
@@ -19,8 +19,8 @@ export const useDivs = (props: Props) => {
   const [phoneDiv, setPhoneDiv] = useState<string>('');
   const dispatch = useAppDispatch();
 
-  const { idurl } = useParams<idPar>();
-  const idNumber = Number(idurl);
+  const { idorg } = useParams<idPar>();
+  const idNumber = Number(idorg);
 
   const addItemDiv = useCallback(() => {
     const itemDiv = {
@@ -32,12 +32,10 @@ export const useDivs = (props: Props) => {
   }, [idNumber, nameDiv, phoneDiv, dispatch]);
 
   const deleteDiv = useCallback(
-    (id: IdDivDel) => (e: React.MouseEvent<HTMLButtonElement>) => {
-      console.log('delete divis');
-      console.log(id);
-      dispatch(delDiv(id));
-      // dispatch(setDiv());
-    },
+    ({ id, idOrganization }: IdDivDel) =>
+      (e: React.MouseEvent<HTMLButtonElement>) => {
+        dispatch(delDiv({ id, idOrganization }));
+      },
     [dispatch],
   );
 
@@ -55,10 +53,8 @@ export const useDivs = (props: Props) => {
     [],
   );
 
-  const handleSubmitDiv = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
+  const handleSubmitDiv = () => {
     addItemDiv();
-    //console.log(45);
   };
 
   return {

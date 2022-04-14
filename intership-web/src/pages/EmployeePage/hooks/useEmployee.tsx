@@ -1,6 +1,7 @@
 import { ChangeEventHandler, useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'Src/hooks';
+import { addEmployee, delEmployee } from 'Src/models/employee/slice';
 
 type Props = {
   anyProp?: any;
@@ -10,12 +11,6 @@ type idPar = {
   idurl: string | undefined;
 };
 
-const handleSubmitEmployee = (e: React.MouseEvent<HTMLButtonElement>) => {
-  e.preventDefault();
-  //addItemDiv();
-  console.log('emlpoye submit');
-};
-
 export const useEmployee = (props: Props) => {
   const [employeeFio, setEmployeeFio] = useState<string>('');
   const [employeeAddress, setEmployeeAddress] = useState<string>('');
@@ -23,27 +18,26 @@ export const useEmployee = (props: Props) => {
 
   const dispatch = useAppDispatch();
 
-  //   const { idurl } = useParams<idPar>();
-  //   const idNumber = Number(idurl);
+  const { idurl } = useParams<idPar>();
+  const idNumber = Number(idurl);
 
-  //   const addItemDiv = useCallback(() => {
-  //     const itemDiv = {
-  //       id_organization: idNumber,
-  //       name: nameDiv,
-  //       phone: phoneDiv,
-  //     };
-  //     dispatch(addDiv({ ...itemDiv }));
-  //   }, [idNumber, nameDiv, phoneDiv, dispatch]);
+  const addItemEmployee = useCallback(() => {
+    const itemDiv = {
+      id_division: idNumber,
+      FIO: employeeFio,
+      address: employeeAddress,
+      position: employeePosition,
+    };
+    dispatch(addEmployee({ ...itemDiv }));
+  }, [idNumber, employeeFio, employeeAddress, employeePosition, dispatch]);
 
-  //   const deleteDiv = useCallback(
-  //     (id: IdDivDel) => (e: React.MouseEvent<HTMLButtonElement>) => {
-  //       console.log('delete divis');
-  //       console.log(id);
-  //       dispatch(delDiv(id));
-  //       // dispatch(setDiv());
-  //     },
-  //     [dispatch],
-  //   );
+  const deleteEmployee = useCallback(
+    ({ id, idDivision }) =>
+      (e: React.MouseEvent<HTMLButtonElement>) => {
+        dispatch(delEmployee({ id, idDivision }));
+      },
+    [dispatch],
+  );
 
   const handleChangeEmpFio = useCallback(
     ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) => {
@@ -66,11 +60,18 @@ export const useEmployee = (props: Props) => {
     [],
   );
 
+  const handleSubmitEmployee = (e: React.MouseEvent<HTMLButtonElement>) => {
+    e.preventDefault();
+    console.log('emlpoye submit');
+    addItemEmployee();
+  };
+
   return {
     handleChangeEmpFio,
     handleChangeEmpAddress,
     handleChangeEmpPosition,
     handleSubmitEmployee,
+    deleteEmployee,
     employeeFio,
     employeeAddress,
     employeePosition,

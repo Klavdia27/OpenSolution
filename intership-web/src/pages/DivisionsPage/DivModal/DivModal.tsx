@@ -7,7 +7,7 @@ export const DivModal: React.FC<{
   children?: React.ReactElement;
   onClose: () => void;
 }> = ({ title, children, onClose }) => {
-  const handleCloseX = (e: React.MouseEvent<HTMLButtonElement>) => {
+  const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
     onClose();
   };
@@ -17,7 +17,7 @@ export const DivModal: React.FC<{
       <div className={cs(styles.window)}>
         <div className={cs(styles.header)}>
           <h2 className={cs(styles.title_modal)}> {title} </h2>
-          <button type="button" onClick={handleCloseX}>
+          <button type="button" onClick={handleClose}>
             x
           </button>
         </div>

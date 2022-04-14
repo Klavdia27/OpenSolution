@@ -16,7 +16,10 @@ li {
     align-items: center;
     padding: 0 0.5rem;
 }
+.item_todo:hover {
+    border: 2px solid #0085F9;
 
+}
 .table {
     display: flex;
     justify-content: left;
@@ -51,7 +54,8 @@ li {
     height: 2rem;
     margin: 0.6875rem 0.875rem;
 }
-.btn_delete, .btn_next {
+.btn_delete, .btn_next, .btn_change {
     background-color: white;
     border: none;
+    cursor: pointer;
 }

@@ -17,9 +17,11 @@ export const App: React.FC = () => {
           <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/organization" element={<PrivateRoute component={HomePage} />} />
-          <Route path="/organization/:id" element={<PrivateRoute component={ChildOrg} />} />
           <Route path="/employee/:idurl" element={<PrivateRoute component={EmployeePage} />} />
-          <Route path="/division/:idurl" element={<PrivateRoute component={DivisionsPage} />} />
+          <Route
+            path="/organization/:idorg/division"
+            element={<PrivateRoute component={DivisionsPage} />}
+          />
         </Routes>
       </div>
     </BrowserRouter>

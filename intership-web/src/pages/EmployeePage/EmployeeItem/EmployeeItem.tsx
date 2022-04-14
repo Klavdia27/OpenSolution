@@ -6,14 +6,16 @@ import cs from 'classnames';
 import styles from './styles.module.scss';
 import iconChange from './assets/change.png';
 import iconDelete from './assets/delete.png';
+import { useEmployee } from '../hooks/useEmployee';
 
 interface EmployeeItemProps {
   todo: IEmployee;
 }
 
 export const EmployeeItem: React.FC<EmployeeItemProps> = ({ todo }) => {
-  const navigate = useNavigate();
   const dispatch = useAppDispatch();
+
+  const { deleteEmployee } = useEmployee({});
 
   return (
     <li>
@@ -25,7 +27,11 @@ export const EmployeeItem: React.FC<EmployeeItemProps> = ({ todo }) => {
         <div className={cs(styles.table_position)}>{todo.position}</div>
         <div className={cs(styles.actions)}>
           <img className={cs(styles.icon_action)} src={iconChange} alt="icon-change" />
-          <button type="button" className={cs(styles.btn_delete)}>
+          <button
+            type="button"
+            className={cs(styles.btn_delete)}
+            onClick={deleteEmployee({ id: todo.id, idDivision: todo.id_division })}
+          >
             <img className={cs(styles.icon_action)} src={iconDelete} alt="icon-delete" />
           </button>
         </div>

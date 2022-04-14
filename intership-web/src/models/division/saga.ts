@@ -21,6 +21,7 @@ const apiDiv = `/api/division/?id=`;
 
 function* fetchDivWorker({ payload }: { payload: IdOrg }) {
   try {
+    console.log(payload);
     const apiDivGet = `/api/division/?id=${payload.id_organization}`;
     const { data }: DivResponse = yield call(API.get, apiDivGet);
     yield put(clearDiv());
@@ -47,8 +48,9 @@ function* fetchDivWorkerDel({ payload }: { payload: IdDivDel }) {
   try {
     const apiDivDel = `/api/division/?id=${payload.id}`;
     yield call(API.delete, apiDivDel);
+    const apiDivGet = `/api/division/?id=${payload.idOrganization}`;
     yield delay(5000);
-    const { data }: DivResponse = yield call(API.get, apiDiv);
+    const { data }: DivResponse = yield call(API.get, apiDivGet);
     yield put(clearDiv());
     yield put(setDiv(data));
   } catch (error) {
