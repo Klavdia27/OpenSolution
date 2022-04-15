@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import cs from 'classnames';
-import { useAppDispatch } from 'Src/hooks';
 import { Button } from 'Common/UI/Button';
 import { Input } from 'Src/UIElements/Input';
 import styles from './styles.module.scss';
@@ -11,8 +10,6 @@ type Props = {
 };
 
 export const OrgModalContent: React.FC<Props> = ({ onClose }) => {
-  const dispatch = useAppDispatch();
-
   const {
     nameOrg,
     addressOrg,

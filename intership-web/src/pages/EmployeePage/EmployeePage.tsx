@@ -2,17 +2,16 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { fetchEmployee } from 'Src/models/employee/slice';
 import { Button } from 'Src/UIElements/Button';
-import { Input } from 'Src/UIElements/Input';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
+import { Loader } from 'Src/components/Loader';
 import cs from 'classnames';
 import styles from './styles.module.scss';
 import { HeaderPage } from '../component/HeaderAllPage';
 import { EmployeeList } from './EmployeeList';
-import { EmployeeModal } from './EmployeeModal';
-import { useEmployee } from './hooks/useEmployee';
+import { EmployeeModal, EmployeeModalContent } from './EmployeeModal';
 
 type idPar = {
-  idurl: string | undefined;
+  iddiv: string | undefined;
 };
 
 export const EmployeePage: React.FC = () => {
@@ -20,20 +19,11 @@ export const EmployeePage: React.FC = () => {
   const dispatch = useAppDispatch();
 
   const employees = useAppSelector((state) => state.employee);
+  const loading = useAppSelector((state) => state.identity.isLoading);
 
-  const {
-    handleChangeEmpFio,
-    handleChangeEmpAddress,
-    handleChangeEmpPosition,
-    handleSubmitEmployee,
-    employeeFio,
-    employeeAddress,
-    employeePosition,
-  } = useEmployee({});
+  const { iddiv } = useParams<idPar>();
+  const prodId = Number(`${iddiv}`);
 
-  const { idurl } = useParams<idPar>();
-  const prodId = Number(`${idurl}`);
-  console.log(prodId);
   useEffect(() => {
     dispatch(fetchEmployee({ id_division: prodId }));
   }, [prodId, dispatch]);
@@ -63,41 +53,10 @@ export const EmployeePage: React.FC = () => {
       </div>
       {showModal && (
         <EmployeeModal title="Add Employee" onClose={() => setShowModal(false)}>
-          <form className={cs(styles.form_addtodo)}>
-            <div className={cs(styles.form_boby)}>
-              <div>Name, Surname</div>
-              <Input
-                value={employeeFio}
-                name="employeeFio"
-                type="text"
-                onChange={handleChangeEmpFio}
-              />
-              <div>Employee Address</div>
-              <Input
-                value={employeeAddress}
-                name="employeeAddress"
-                type="text"
-                onChange={handleChangeEmpAddress}
-              />
-              <div>Employee Position</div>
-              <Input
-                value={employeePosition}
-                name="employeePosition"
-                type="text"
-                onChange={handleChangeEmpPosition}
-              />
-            </div>
-            <div className={cs(styles.form_footer)}>
-              <Button onClick={() => setShowModal(false)} className={cs(styles.btn_canceltodo)}>
-                Cancel
-              </Button>
-              <Button onClick={handleSubmitEmployee} className={cs(styles.btn_addtodo)}>
-                Add
-              </Button>
-            </div>
-          </form>
+          <EmployeeModalContent onClose={() => setShowModal(false)} />
         </EmployeeModal>
       )}
+      {loading && <Loader />}
     </div>
   );
 };

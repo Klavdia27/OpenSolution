@@ -1,5 +1,7 @@
+import React from 'react';
 import { call, delay, put, takeEvery } from 'redux-saga/effects';
 import { API } from 'Src/Api';
+import { setLoading } from '../identity/slice';
 import { addOrg, clearOrgs, delOrg, fetchOrg, setOrg } from './slice';
 import { IdOrg, OrganizationCreate } from './type';
 
@@ -17,7 +19,6 @@ const apiORg = '/api/organization';
 function* fetchOrgWorker() {
   try {
     const { data }: OrgResponse = yield call(API.get, apiORg);
-    // console.log(data);
     yield put(setOrg(data));
   } catch (error) {
     console.error(error);
@@ -28,7 +29,9 @@ function* fetchOrgWorker() {
 function* fetchOrgWorkerAdd({ payload }: { payload: OrganizationCreate }) {
   try {
     yield call(API.post, apiORg, payload);
+    yield put(setLoading(true));
     yield delay(5000);
+    yield put(setLoading(false));
     const { data }: OrgResponse = yield call(API.get, apiORg);
     yield put(clearOrgs());
     yield put(setOrg(data));
@@ -46,7 +49,9 @@ function* fetchOrgWorkerDel({ payload }: { payload: IdOrg }) {
   try {
     const apiORgDel = `/api/organization/?id=${payload.id}`;
     yield call(API.delete, apiORgDel);
+    yield put(setLoading(true));
     yield delay(5000);
+    yield put(setLoading(false));
     const { data }: OrgResponse = yield call(API.get, apiORg);
     yield put(clearOrgs());
     yield put(setOrg(data));

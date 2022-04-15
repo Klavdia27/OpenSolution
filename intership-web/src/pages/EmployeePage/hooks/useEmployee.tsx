@@ -1,4 +1,4 @@
-import { ChangeEventHandler, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'Src/hooks';
 import { addEmployee, delEmployee } from 'Src/models/employee/slice';
@@ -8,7 +8,7 @@ type Props = {
 };
 
 type idPar = {
-  idurl: string | undefined;
+  iddiv: string | undefined;
 };
 
 export const useEmployee = (props: Props) => {
@@ -18,8 +18,8 @@ export const useEmployee = (props: Props) => {
 
   const dispatch = useAppDispatch();
 
-  const { idurl } = useParams<idPar>();
-  const idNumber = Number(idurl);
+  const { iddiv } = useParams<idPar>();
+  const idNumber = Number(iddiv);
 
   const addItemEmployee = useCallback(() => {
     const itemDiv = {
@@ -60,9 +60,7 @@ export const useEmployee = (props: Props) => {
     [],
   );
 
-  const handleSubmitEmployee = (e: React.MouseEvent<HTMLButtonElement>) => {
-    e.preventDefault();
-    console.log('emlpoye submit');
+  const handleSubmitEmployee = () => {
     addItemEmployee();
   };
 

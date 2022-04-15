@@ -15,7 +15,7 @@ export type IdOrg = {
   id_organization: number;
 };
 
-export type IdDivDel = {
+export type DivisionDel = {
   id: number;
   idOrganization: number;
 };

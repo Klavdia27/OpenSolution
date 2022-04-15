@@ -16,7 +16,9 @@ li {
     align-items: center;
     padding: 0 0.5rem;
 }
-
+.item_todo:hover {
+    border: 2px solid #0085F9;
+}
 .table {
     display: flex;
     justify-content: left;

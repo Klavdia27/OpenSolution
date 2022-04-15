@@ -1,7 +1,8 @@
 import { call, delay, put, takeEvery } from 'redux-saga/effects';
 import { API } from 'Src/Api';
+import { setLoading } from '../identity/slice';
 import { addDiv, clearDiv, delDiv, fetchDiv, setDiv } from './slice';
-import { IdOrg, IdDivDel, IDivisionCreate } from './type';
+import { IdOrg, IDivisionCreate, DivisionDel } from './type';
 
 type DivResponse = {
   data: Array<{
@@ -21,7 +22,6 @@ const apiDiv = `/api/division/?id=`;
 
 function* fetchDivWorker({ payload }: { payload: IdOrg }) {
   try {
-    console.log(payload);
     const apiDivGet = `/api/division/?id=${payload.id_organization}`;
     const { data }: DivResponse = yield call(API.get, apiDivGet);
     yield put(clearDiv());
@@ -34,7 +34,9 @@ function* fetchDivWorker({ payload }: { payload: IdOrg }) {
 function* fetchDivWorkerAdd({ payload }: { payload: IDivisionCreate }) {
   try {
     yield call(API.post, apiDiv, payload);
+    yield put(setLoading(true));
     yield delay(5000);
+    yield put(setLoading(false));
     const apiDivGet = `/api/division/?id=${payload.id_organization}`;
     const { data }: DivResponse = yield call(API.get, apiDivGet);
     yield put(clearDiv());
@@ -44,12 +46,14 @@ function* fetchDivWorkerAdd({ payload }: { payload: IDivisionCreate }) {
   }
 }
 
-function* fetchDivWorkerDel({ payload }: { payload: IdDivDel }) {
+function* fetchDivWorkerDel({ payload }: { payload: DivisionDel }) {
   try {
     const apiDivDel = `/api/division/?id=${payload.id}`;
     yield call(API.delete, apiDivDel);
     const apiDivGet = `/api/division/?id=${payload.idOrganization}`;
+    yield put(setLoading(true));
     yield delay(5000);
+    yield put(setLoading(false));
     const { data }: DivResponse = yield call(API.get, apiDivGet);
     yield put(clearDiv());
     yield put(setDiv(data));

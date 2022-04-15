@@ -1,5 +1,6 @@
 import { call, delay, put, takeEvery } from 'redux-saga/effects';
 import { API } from 'Src/Api';
+import { setLoading } from '../identity/slice';
 import { addEmployee, clearEmployee, delEmployee, fetchEmployee, setEmployee } from './slice';
 import { EmployeeDel, IdDiv, IEmployeeCreate } from './type';
 
@@ -24,7 +25,6 @@ function* fetchEmployeeWorker({ payload }: { payload: IdDiv }) {
   try {
     const apiDivGet = `/api/employee/?id=${payload.id_division}`;
     const { data }: EmployeeResponse = yield call(API.get, apiDivGet);
-    // console.log('saga=', data);
     yield put(clearEmployee());
     yield put(setEmployee(data));
   } catch (error) {
@@ -35,7 +35,9 @@ function* fetchEmployeeWorker({ payload }: { payload: IdDiv }) {
 function* fetchEmployeeWorkerAdd({ payload }: { payload: IEmployeeCreate }) {
   try {
     yield call(API.post, apiEmp, payload);
+    yield put(setLoading(true));
     yield delay(5000);
+    yield put(setLoading(false));
     const apiEmpGet = `/api/employee/?id=${payload.id_division}`;
     const { data }: EmployeeResponse = yield call(API.get, apiEmpGet);
     yield put(clearEmployee());
@@ -49,7 +51,9 @@ function* fetchEmployeeWorkerDel({ payload }: { payload: EmployeeDel }) {
   try {
     const apiEmpDel = `/api/employee/?id=${payload.id}`;
     yield call(API.delete, apiEmpDel);
+    yield put(setLoading(true));
     yield delay(5000);
+    yield put(setLoading(false));
     const apiEmpGet = `/api/employee/?id=${payload.idDivision}`;
     yield delay(5000);
     const { data }: EmployeeResponse = yield call(API.get, apiEmpGet);

@@ -49,7 +49,7 @@ export const LoginForm: React.FC<LoginFormProps> = ({
           <Button onClick={handleSubmit}>Sign In</Button>
         </div>
       </form>
-      <div className="mt-12">2020-2021</div>
+      <div className="mt-12">april 2022</div>
     </div>
   );
 };

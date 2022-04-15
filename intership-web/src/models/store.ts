@@ -1,7 +1,6 @@
 import { AnyAction, combineReducers, configureStore, Dispatch, Middleware } from '@reduxjs/toolkit';
 import createSagaMiddleware from 'redux-saga';
 import identityReducer, { initialIdentityState } from './identity/slice';
-import userReducer, { initialUserState } from './example/slice';
 import orgReducer, { initialOrgState } from './organization/slice';
 import divReducer, { initialDivState } from './division/slice';
 import employeeReducer, { initialEmployeeState } from './employee/slice';
@@ -24,7 +23,6 @@ const saga = createSagaMiddleware();
 
 // объединяем редьюсеры
 const rootReducer = combineReducers({
-  certs: userReducer,
   identity: identityReducer,
   org: orgReducer,
   div: divReducer,
@@ -33,7 +31,6 @@ const rootReducer = combineReducers({
 
 // начальные данные state
 let preloadedState = {
-  certs: initialUserState,
   identity: initialIdentityState,
   org: initialOrgState,
   div: initialDivState,

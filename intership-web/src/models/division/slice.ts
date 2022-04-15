@@ -1,5 +1,5 @@
 import { createAction, createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IdOrg, IdDivDel, IDivision, IDivisionCreate } from './type';
+import { IdOrg, DivisionDel, IDivision, IDivisionCreate } from './type';
 
 type DivSlice = Array<IDivision>;
 
@@ -7,7 +7,7 @@ export const initialDivState: DivSlice = [];
 
 export const fetchDiv = createAction<IdOrg>('fetchDiv');
 export const addDiv = createAction<IDivisionCreate>('addDiv');
-export const delDiv = createAction<IdDivDel>('delDiv');
+export const delDiv = createAction<DivisionDel>('delDiv');
 
 export const divSlice = createSlice({
   name: 'div',

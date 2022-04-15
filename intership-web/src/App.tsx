@@ -6,7 +6,6 @@ import cs from 'classnames';
 import s from './App.module.scss';
 
 import { PrivateRoute } from './components/PrivateRoute';
-import { ChildOrg } from './pages/Home/component/ChildOrg';
 
 // строка 16 - проверяет авторизован ли пользователь
 export const App: React.FC = () => {
@@ -17,7 +16,10 @@ export const App: React.FC = () => {
           <Route path="/" element={<LoginPage />} />
           <Route path="/login" element={<LoginPage />} />
           <Route path="/organization" element={<PrivateRoute component={HomePage} />} />
-          <Route path="/employee/:idurl" element={<PrivateRoute component={EmployeePage} />} />
+          <Route
+            path="/organization/division/:iddiv/employee"
+            element={<PrivateRoute component={EmployeePage} />}
+          />
           <Route
             path="/organization/:idorg/division"
             element={<PrivateRoute component={DivisionsPage} />}

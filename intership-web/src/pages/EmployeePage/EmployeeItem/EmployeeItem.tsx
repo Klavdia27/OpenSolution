@@ -1,6 +1,4 @@
 import React, { useCallback } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'Src/hooks';
 import { IEmployee } from 'Src/models/employee/type';
 import cs from 'classnames';
 import styles from './styles.module.scss';
@@ -13,8 +11,6 @@ interface EmployeeItemProps {
 }
 
 export const EmployeeItem: React.FC<EmployeeItemProps> = ({ todo }) => {
-  const dispatch = useAppDispatch();
-
   const { deleteEmployee } = useEmployee({});
 
   return (

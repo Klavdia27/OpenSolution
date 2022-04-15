@@ -1,31 +1,25 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Button } from 'Src/UIElements/Button';
-import { Input } from 'Src/UIElements/Input';
 import cs from 'classnames';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
 import { fetchDiv } from 'Src/models/division/slice';
+import { Loader } from 'Src/components/Loader';
 import { HeaderPage } from '../component/HeaderAllPage';
 import styles from './styles.module.scss';
-import { useDivs } from './hooks/useDivs';
 import { DivList } from './DivList';
 import { DivModal, DivModalContent } from './DivModal';
 
 type idPar = {
-  idurl: string | undefined;
   idorg: string | undefined;
 };
 
 export const DivisionsPage: React.FC = () => {
   const [showModal, setShowModal] = useState(false);
   const dispatch = useAppDispatch();
-  const { handleChangeDivName, handleChangeDivPhone, handleSubmitDiv, nameDiv, phoneDiv } = useDivs(
-    {},
-  );
   const divs = useAppSelector((state) => state.div);
-
+  const loading = useAppSelector((state) => state.identity.isLoading);
   const { idorg } = useParams<idPar>();
-  //console.log('idorg=', idorg);
   const prodId = Number(`${idorg}`);
 
   useEffect(() => {
@@ -59,6 +53,7 @@ export const DivisionsPage: React.FC = () => {
           <DivModalContent onClose={() => setShowModal(false)} />
         </DivModal>
       )}
+      {loading && <Loader />}
     </div>
   );
 };

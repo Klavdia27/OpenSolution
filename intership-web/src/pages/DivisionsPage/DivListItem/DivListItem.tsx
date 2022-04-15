@@ -21,8 +21,7 @@ export const DivListItem: React.FC<DivListItemProps> = ({ todo }) => {
 
   const nextPage = useCallback(
     (id: IdDiv) => (event: React.MouseEvent<HTMLButtonElement>) => {
-      console.log('press but division next');
-      navigate(`/employee/${id.id_division}`);
+      navigate(`/organization/division/${id.id_division}/employee`);
       dispatch(clearDiv());
     },
     [navigate, dispatch],

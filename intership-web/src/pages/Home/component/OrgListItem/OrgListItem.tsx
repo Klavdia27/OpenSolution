@@ -1,4 +1,5 @@
 import React, { useCallback, useState } from 'react';
+import { Tooltip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { clearOrgs } from 'Src/models/organization/slice';
 import { IdOrg } from 'Src/models/organization/type';
@@ -9,7 +10,7 @@ import iconChange from './assets/change.png';
 import iconDelete from './assets/delete.png';
 import { useAppDispatch } from '../../../../hooks';
 import { useOrgs } from '../../hooks/useOrgs';
-import { OrgModal, OrgModalContent } from '../../orgModal';
+import { OrgModal, OrgModalChange, OrgModalContent } from '../../orgModal';
 
 type OrgType = {
   id: number;
@@ -28,7 +29,6 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
 
   const openDivision = useCallback(
     (id: IdOrg) => (event: React.MouseEvent<HTMLButtonElement>) => {
-      console.log(id);
       navigate(`/organization/${id.id}/division`);
       dispatch(clearOrgs());
     },
@@ -37,6 +37,11 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
 
   const { deleteOrg } = useOrgs({});
   const [showModal, setShowModal] = useState(false);
+  const [showModalChange, setShowModalChange] = useState(false);
+  // const handleModalChange = () => {
+  //   console.log('open change org');
+
+  // };
 
   return (
     <div>
@@ -47,17 +52,19 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
           <div className={cs(styles.table_address)}>{todo.address}</div>
           <div className={cs(styles.table_inn)}>{todo.INN}</div>
           <div className={cs(styles.actions)}>
+            <Tooltip title="Подробнее">
+              <button
+                type="button"
+                className={cs(styles.btn_next)}
+                onClick={openDivision({ id: todo.id })}
+              >
+                <img className={cs(styles.icon_action)} src={iconNext} alt="icon-next" />
+              </button>
+            </Tooltip>
             <button
               type="button"
               className={cs(styles.btn_next)}
-              onClick={openDivision({ id: todo.id })}
-            >
-              <img className={cs(styles.icon_action)} src={iconNext} alt="icon-next" />
-            </button>
-            <button
-              type="button"
-              className={cs(styles.btn_next)}
-              onClick={() => setShowModal(true)}
+              onClick={() => setShowModalChange(true)}
             >
               <img className={cs(styles.icon_action)} src={iconChange} alt="icon-change" />
             </button>
@@ -76,6 +83,7 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
           <OrgModalContent onClose={() => setShowModal(false)} />
         </OrgModal>
       )}
+      {showModalChange && <OrgModalChange onClose={() => setShowModalChange(false)} />}
     </div>
   );
 };

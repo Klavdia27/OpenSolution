@@ -1,10 +1,8 @@
-import { ChangeEventHandler, useCallback, useState } from 'react';
+import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'Src/hooks';
-import { addDiv, delDiv, fetchDiv, setDiv } from 'Src/models/division/slice';
-import { IdDivDel } from 'Src/models/division/type';
-import { addOrg, clearOrgs, delOrg } from 'Src/models/organization/slice';
-import { IdOrg } from 'Src/models/organization/type';
+import { addDiv, delDiv } from 'Src/models/division/slice';
+import { DivisionDel } from 'Src/models/division/type';
 
 type Props = {
   anyProp?: any;
@@ -32,7 +30,7 @@ export const useDivs = (props: Props) => {
   }, [idNumber, nameDiv, phoneDiv, dispatch]);
 
   const deleteDiv = useCallback(
-    ({ id, idOrganization }: IdDivDel) =>
+    ({ id, idOrganization }: DivisionDel) =>
       (e: React.MouseEvent<HTMLButtonElement>) => {
         dispatch(delDiv({ id, idOrganization }));
       },

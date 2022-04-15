@@ -55,7 +55,6 @@ export const useForm = () => {
       if (isValidLogin && isValidPassword) {
         setValidForm(true);
         dispatch(doLogin({ login, password }));
-        // dispatch(namePage({ namePage: 'organization' }));
       }
     },
     [login, password, isValidLogin, isValidPassword, dispatch],

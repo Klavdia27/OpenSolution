@@ -2,27 +2,14 @@ import React, { useEffect, useState } from 'react';
 import cs from 'classnames';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
 import { Button } from 'Common/UI/Button';
-import { Input } from 'Src/UIElements/Input';
 import { fetchOrg } from 'Src/models/organization/slice';
-import { OrgList } from './component/OrgList/OrgList';
+import { Loader } from 'Src/components/Loader';
 import styles from './styles.module.scss';
 import { OrgModal } from './orgModal/OrgModal';
-import { useOrgs } from './hooks/useOrgs';
 import { HeaderPage } from '../component/HeaderAllPage/HeaderAllPage';
 import { OrgModalContent } from './orgModal';
+import { OrgList } from './component/OrgList';
 
-// type OrgType = {
-//   id: number;
-//   name: string;
-//   address: string;
-//   inn: string;
-//   complete: boolean;
-// };
-
-// interface OrgListProps {
-//   items: Array<OrgType>;
-//   title: string;
-// }
 type Props = {
   someProp?: any;
 };
@@ -32,6 +19,8 @@ export const HomePage: React.FC<Props> = () => {
   const orgs = useAppSelector((state) => state.org);
 
   const [showModal, setShowModal] = useState(false);
+
+  const loading = useAppSelector((state) => state.identity.isLoading);
 
   useEffect(() => {
     dispatch(fetchOrg());
@@ -67,6 +56,7 @@ export const HomePage: React.FC<Props> = () => {
           <OrgModalContent onClose={() => setShowModal(false)} />
         </OrgModal>
       )}
+      {loading && <Loader />}
     </div>
   );
 };
