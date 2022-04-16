@@ -1,4 +1,5 @@
 import React, { useCallback } from 'react';
+import { Tooltip } from '@mui/material';
 import { useNavigate } from 'react-router-dom';
 import { clearDiv } from 'Src/models/division/slice';
 import { IDivision } from 'Src/models/division/type';
@@ -37,13 +38,15 @@ export const DivListItem: React.FC<DivListItemProps> = ({ todo }) => {
         <div className={cs(styles.table_name)}>{todo.name}</div>
         <div className={cs(styles.table_phone)}>{todo.phone}</div>
         <div className={cs(styles.actions)}>
-          <button
-            type="button"
-            className={cs(styles.btn_next)}
-            onClick={nextPage({ id_division: todo.id })}
-          >
-            <img className={cs(styles.icon_action)} src={iconNext} alt="icon-next" />
-          </button>
+          <Tooltip title="Подробнее">
+            <button
+              type="button"
+              className={cs(styles.btn_next)}
+              onClick={nextPage({ id_division: todo.id })}
+            >
+              <img className={cs(styles.icon_action)} src={iconNext} alt="icon-next" />
+            </button>
+          </Tooltip>
           <img className={cs(styles.icon_action)} src={iconChange} alt="icon-change" />
           <button
             type="button"

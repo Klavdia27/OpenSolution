@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { fetchEmployee } from 'Src/models/employee/slice';
+import { useNavigate, useParams } from 'react-router-dom';
+import { clearEmployee, fetchEmployee } from 'Src/models/employee/slice';
 import { Button } from 'Src/UIElements/Button';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
 import { Loader } from 'Src/components/Loader';
@@ -15,8 +15,9 @@ type idPar = {
 };
 
 export const EmployeePage: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
 
   const employees = useAppSelector((state) => state.employee);
   const loading = useAppSelector((state) => state.identity.isLoading);
@@ -28,6 +29,12 @@ export const EmployeePage: React.FC = () => {
     dispatch(fetchEmployee({ id_division: prodId }));
   }, [prodId, dispatch]);
 
+  // const openDivisionPage = () => {
+  //   console.log('нажаЛи back на странице организации');
+  //   navigate(`/organization/division`);  // нужно указать idorg
+  //   dispatch(clearEmployee());
+  // };
+  // onClick={openDivisionPage} - в 43 строку
   return (
     <div>
       <HeaderPage />

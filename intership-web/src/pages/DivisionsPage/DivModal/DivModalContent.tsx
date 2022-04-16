@@ -20,7 +20,7 @@ export const DivModalContent: React.FC<Props> = ({ onClose }) => {
         <div className={cs(styles.form_boby)}>
           <div>Division Name</div>
           <Input value={nameDiv} name="nameDiv" type="text" onChange={handleChangeDivName} />
-          <div>Division Phone</div>
+          <div>Division&apos;s Phone</div>
           <Input value={phoneDiv} name="phoneDiv" type="text" onChange={handleChangeDivPhone} />
         </div>
         <div className={cs(styles.form_footer)}>

@@ -1,8 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import cs from 'classnames';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
 import { Button } from 'Common/UI/Button';
-import { fetchOrg } from 'Src/models/organization/slice';
+import { clearOrgs, fetchOrg } from 'Src/models/organization/slice';
 import { Loader } from 'Src/components/Loader';
 import styles from './styles.module.scss';
 import { OrgModal } from './orgModal/OrgModal';
@@ -16,6 +17,7 @@ type Props = {
 
 export const HomePage: React.FC<Props> = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const orgs = useAppSelector((state) => state.org);
 
   const [showModal, setShowModal] = useState(false);
@@ -26,13 +28,20 @@ export const HomePage: React.FC<Props> = () => {
     dispatch(fetchOrg());
   }, [dispatch]);
 
+  const openLoginPage = () => {
+    navigate(`/login`); // тут по заданию не понятно куда должна вести кнопка
+    dispatch(clearOrgs());
+  };
+
   return (
     <div>
       <div>
         <HeaderPage />
         <div className={cs(styles.org)}>
           <div className={cs(styles.btns)}>
-            <Button className={cs(styles.button_back, styles.button)}>Back</Button>
+            <Button className={cs(styles.button_back, styles.button)} onClick={openLoginPage}>
+              Back
+            </Button>
             <Button
               className={cs(styles.button_add_org, styles.button)}
               onClick={() => setShowModal(true)}

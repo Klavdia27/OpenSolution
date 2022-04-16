@@ -10,7 +10,7 @@ import iconChange from './assets/change.png';
 import iconDelete from './assets/delete.png';
 import { useAppDispatch } from '../../../../hooks';
 import { useOrgs } from '../../hooks/useOrgs';
-import { OrgModal, OrgModalChange, OrgModalContent } from '../../orgModal';
+import { OrgModal, OrgModalContent, OrgModalEdit } from '../../orgModal';
 
 type OrgType = {
   id: number;
@@ -38,10 +38,6 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
   const { deleteOrg } = useOrgs({});
   const [showModal, setShowModal] = useState(false);
   const [showModalChange, setShowModalChange] = useState(false);
-  // const handleModalChange = () => {
-  //   console.log('open change org');
-
-  // };
 
   return (
     <div>
@@ -83,7 +79,9 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
           <OrgModalContent onClose={() => setShowModal(false)} />
         </OrgModal>
       )}
-      {showModalChange && <OrgModalChange onClose={() => setShowModalChange(false)} />}
+      {showModalChange && (
+        <OrgModalEdit onClose={() => setShowModalChange(false)} idEdit={todo.id} />
+      )}
     </div>
   );
 };

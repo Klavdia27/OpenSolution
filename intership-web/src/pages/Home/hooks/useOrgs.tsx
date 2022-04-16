@@ -1,6 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useAppDispatch } from 'Src/hooks';
-import { addOrg, delOrg, fetchOrg } from 'Src/models/organization/slice';
+import { addOrg, delOrg } from 'Src/models/organization/slice';
 import { IdOrg } from 'Src/models/organization/type';
 
 type Props = {
@@ -13,6 +13,9 @@ export const useOrgs = (props: Props) => {
   const [innOrg, setInnOrg] = useState<string>('');
   const dispatch = useAppDispatch();
 
+  const handleSubmitOrg = () => {
+    addItem();
+  };
   const addItem = useCallback(() => {
     const item = {
       name: nameOrg,
@@ -50,20 +53,11 @@ export const useOrgs = (props: Props) => {
     [],
   );
 
-  const handleSubmit = () => {
-    addItem();
-  };
-
-  // const handleSubmitChange = () => {
-  //   const gg = [];
-  //   console.log('Будем редатировать', gg);
-  // };
-
   return {
     handleChangeOrgName,
     handleChangeOrgAddress,
     handleChangeOrgInn,
-    handleSubmit,
+    handleSubmitOrg,
     deleteOrg,
     nameOrg,
     addressOrg,

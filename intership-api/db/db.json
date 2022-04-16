@@ -12,9 +12,9 @@
     },
     {
       "id": 2,
-      "name": "rew",
-      "address": "werw",
-      "INN": null
+      "name": "sferaд",
+      "address": "minskл",
+      "INN": "8765"
     },
     {
       "id": 4,
@@ -24,9 +24,9 @@
     },
     {
       "id": 9,
-      "name": "tut",
-      "address": "rtr",
-      "INN": null
+      "name": "didid",
+      "address": "brest-nit",
+      "INN": "543321"
     },
     {
       "id": 11,
@@ -36,15 +36,15 @@
     },
     {
       "id": 13,
-      "name": "hc",
-      "address": "fgf",
-      "INN": null
+      "name": "fit",
+      "address": "fit-clab",
+      "INN": "986"
     },
     {
       "id": 14,
-      "name": "dgd",
-      "address": "dfg",
-      "INN": null
+      "name": "ppppp",
+      "address": "pppp",
+      "INN": "8888"
     },
     {
       "id": 15,
@@ -84,9 +84,9 @@
     },
     {
       "id": 29,
-      "name": "sfera",
-      "address": "minsk",
-      "INN": 1234321
+      "name": "twenty",
+      "address": "krichev",
+      "INN": "0987"
     }
   ],
   "division": [

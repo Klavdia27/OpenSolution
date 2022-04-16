@@ -33,7 +33,7 @@ export const EmployeeModalContent: React.FC<Props> = ({ onClose }) => {
             type="text"
             onChange={handleChangeEmpAddress}
           />
-          <div>Employee Position</div>
+          <div>Employees&apos;s Position</div>
           <Input
             value={employeePosition}
             name="employeePosition"

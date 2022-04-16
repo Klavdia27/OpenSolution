@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from 'Src/UIElements/Button';
 import cs from 'classnames';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
-import { fetchDiv } from 'Src/models/division/slice';
+import { clearDiv, fetchDiv } from 'Src/models/division/slice';
 import { Loader } from 'Src/components/Loader';
 import { HeaderPage } from '../component/HeaderAllPage';
 import styles from './styles.module.scss';
@@ -15,8 +15,9 @@ type idPar = {
 };
 
 export const DivisionsPage: React.FC = () => {
-  const [showModal, setShowModal] = useState(false);
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
   const divs = useAppSelector((state) => state.div);
   const loading = useAppSelector((state) => state.identity.isLoading);
   const { idorg } = useParams<idPar>();
@@ -26,12 +27,20 @@ export const DivisionsPage: React.FC = () => {
     dispatch(fetchDiv({ id_organization: prodId }));
   }, [prodId, dispatch]);
 
+  const openOrganizationPage = () => {
+    console.log('нажаЛи back на странице организации');
+    navigate(`/organization`);
+    dispatch(clearDiv());
+  };
+
   return (
     <div>
       <HeaderPage />
       <div className={cs(styles.div)}>
         <div className={cs(styles.btns)}>
-          <Button className={cs(styles.button_back, styles.button)}>Back</Button>
+          <Button className={cs(styles.button_back, styles.button)} onClick={openOrganizationPage}>
+            Back
+          </Button>
           <Button
             className={cs(styles.button_add_org, styles.button)}
             onClick={() => setShowModal(true)}

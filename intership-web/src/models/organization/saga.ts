@@ -1,9 +1,8 @@
-import React from 'react';
 import { call, delay, put, takeEvery } from 'redux-saga/effects';
 import { API } from 'Src/Api';
 import { setLoading } from '../identity/slice';
-import { addOrg, clearOrgs, delOrg, fetchOrg, setOrg } from './slice';
-import { IdOrg, OrganizationCreate } from './type';
+import { addOrg, clearOrgs, delOrg, editOrg, fetchOrg, setOrg } from './slice';
+import { IdOrg, Organization, OrganizationCreate } from './type';
 
 type OrgResponse = {
   data: Array<{
@@ -42,8 +41,6 @@ function* fetchOrgWorkerAdd({ payload }: { payload: OrganizationCreate }) {
 }
 
 // delete `/organization/${organizationId}`| |
-// localhost/organization/1
-// yield call(API.delete, apiORg + `/${payload.id}`);
 
 function* fetchOrgWorkerDel({ payload }: { payload: IdOrg }) {
   try {
@@ -55,7 +52,22 @@ function* fetchOrgWorkerDel({ payload }: { payload: IdOrg }) {
     const { data }: OrgResponse = yield call(API.get, apiORg);
     yield put(clearOrgs());
     yield put(setOrg(data));
-    console.log(data);
+  } catch (error) {
+    console.error(error);
+  }
+}
+// put `/organization/?id=${organizationId}`| `{name:string, address:string, INN:number}` |
+
+function* fetchOrgWorkerEdit({ payload }: { payload: Organization }) {
+  try {
+    const apiORgDel = `/api/organization/?id=${payload.id}`;
+    yield call(API.put, apiORgDel, { ...payload });
+    yield put(setLoading(true));
+    yield delay(5000);
+    yield put(setLoading(false));
+    const { data }: OrgResponse = yield call(API.get, apiORg);
+    yield put(clearOrgs());
+    yield put(setOrg(data));
   } catch (error) {
     console.error(error);
   }
@@ -66,6 +78,7 @@ function* getOrgSaga() {
   yield takeEvery(addOrg, fetchOrgWorkerAdd);
   yield takeEvery(fetchOrg, fetchOrgWorker);
   yield takeEvery(delOrg, fetchOrgWorkerDel);
+  yield takeEvery(editOrg, fetchOrgWorkerEdit);
 }
 
 export default getOrgSaga;

@@ -6,13 +6,13 @@ type OrgSlice = Array<Organization>;
 // создаем начальное состояние
 export const initialOrgState: OrgSlice = [];
 
-// создаем экшен с type 'login'
+// создаем экшен с type 'fetchOrg'
 export const fetchOrg = createAction('fetchOrg');
 
 // создаем экшен добавления организации
 export const addOrg = createAction<OrganizationCreate>('addOrg');
-
 export const delOrg = createAction<IdOrg>('delOrg');
+export const editOrg = createAction<Organization>('editOrg');
 
 // создаем identitySlice, объединяет в себе createReducer и createAction
 export const orgSlice = createSlice({

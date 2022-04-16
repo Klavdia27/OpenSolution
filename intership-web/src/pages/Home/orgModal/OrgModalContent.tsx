@@ -17,7 +17,7 @@ export const OrgModalContent: React.FC<Props> = ({ onClose }) => {
     handleChangeOrgName,
     handleChangeOrgAddress,
     handleChangeOrgInn,
-    handleSubmit,
+    handleSubmitOrg,
   } = useOrgs({});
 
   return (
@@ -42,7 +42,7 @@ export const OrgModalContent: React.FC<Props> = ({ onClose }) => {
           </Button>
           <Button
             onClick={() => {
-              handleSubmit();
+              handleSubmitOrg();
               onClose();
             }}
             className={cs(styles.btn_addtodo)}

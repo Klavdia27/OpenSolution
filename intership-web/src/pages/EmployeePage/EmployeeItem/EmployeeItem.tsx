@@ -1,4 +1,4 @@
-import React, { useCallback } from 'react';
+import React from 'react';
 import { IEmployee } from 'Src/models/employee/type';
 import cs from 'classnames';
 import styles from './styles.module.scss';
