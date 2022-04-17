@@ -8,6 +8,7 @@ export const initialEmployeeState: EmployeeSlice = [];
 export const fetchEmployee = createAction<IdDiv>('fetchEmployee');
 export const addEmployee = createAction<IEmployeeCreate>('addEmployee');
 export const delEmployee = createAction<EmployeeDel>('DelEmployee');
+export const editEmployee = createAction<IEmployee>('editEmployee');
 
 export const employeeSlice = createSlice({
   name: 'employee',

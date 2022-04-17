@@ -3,6 +3,7 @@ import { Organization, OrganizationCreate, IdOrg } from './type';
 
 // задаем типы полей
 type OrgSlice = Array<Organization>;
+
 // создаем начальное состояние
 export const initialOrgState: OrgSlice = [];
 

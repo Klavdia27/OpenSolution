@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import cs from 'classnames';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';

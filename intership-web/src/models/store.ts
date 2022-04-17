@@ -4,7 +4,6 @@ import identityReducer, { initialIdentityState } from './identity/slice';
 import orgReducer, { initialOrgState } from './organization/slice';
 import divReducer, { initialDivState } from './division/slice';
 import employeeReducer, { initialEmployeeState } from './employee/slice';
-import getUserSaga from './example/sagas';
 import getIdentitySaga from './identity/saga';
 import getOrgSaga from './organization/saga';
 import getDivSaga from './division/saga';
@@ -61,7 +60,6 @@ export const store = configureStore({
   middleware: [persist, saga],
 });
 
-saga.run(getUserSaga);
 saga.run(getIdentitySaga);
 saga.run(getOrgSaga);
 saga.run(getDivSaga);

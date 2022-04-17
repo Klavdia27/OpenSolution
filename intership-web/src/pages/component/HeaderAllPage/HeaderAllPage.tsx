@@ -1,5 +1,4 @@
 import React, { useCallback } from 'react';
-
 import cs from 'classnames';
 import { Button } from 'Src/UIElements/Button';
 import { doLogout } from 'Src/models/identity/slice';

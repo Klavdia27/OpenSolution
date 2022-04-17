@@ -13,11 +13,11 @@ type OrgResponse = {
   }>;
 };
 
-const apiORg = '/api/organization';
+const apiOrg = '/api/organization';
 
 function* fetchOrgWorker() {
   try {
-    const { data }: OrgResponse = yield call(API.get, apiORg);
+    const { data }: OrgResponse = yield call(API.get, apiOrg);
     yield put(setOrg(data));
   } catch (error) {
     console.error(error);
@@ -27,14 +27,13 @@ function* fetchOrgWorker() {
 
 function* fetchOrgWorkerAdd({ payload }: { payload: OrganizationCreate }) {
   try {
-    yield call(API.post, apiORg, payload);
+    yield call(API.post, apiOrg, payload);
     yield put(setLoading(true));
     yield delay(5000);
     yield put(setLoading(false));
-    const { data }: OrgResponse = yield call(API.get, apiORg);
+    const { data }: OrgResponse = yield call(API.get, apiOrg);
     yield put(clearOrgs());
     yield put(setOrg(data));
-    // console.log(data);
   } catch (error) {
     console.error(error);
   }
@@ -49,7 +48,7 @@ function* fetchOrgWorkerDel({ payload }: { payload: IdOrg }) {
     yield put(setLoading(true));
     yield delay(5000);
     yield put(setLoading(false));
-    const { data }: OrgResponse = yield call(API.get, apiORg);
+    const { data }: OrgResponse = yield call(API.get, apiOrg);
     yield put(clearOrgs());
     yield put(setOrg(data));
   } catch (error) {
@@ -60,12 +59,12 @@ function* fetchOrgWorkerDel({ payload }: { payload: IdOrg }) {
 
 function* fetchOrgWorkerEdit({ payload }: { payload: Organization }) {
   try {
-    const apiORgDel = `/api/organization/?id=${payload.id}`;
-    yield call(API.put, apiORgDel, { ...payload });
+    const apiOrgEdit = `/api/organization/?id=${payload.id}`;
+    yield call(API.put, apiOrgEdit, { ...payload });
     yield put(setLoading(true));
     yield delay(5000);
     yield put(setLoading(false));
-    const { data }: OrgResponse = yield call(API.get, apiORg);
+    const { data }: OrgResponse = yield call(API.get, apiOrg);
     yield put(clearOrgs());
     yield put(setOrg(data));
   } catch (error) {

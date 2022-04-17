@@ -1,7 +1,6 @@
 import { useCallback, useState } from 'react';
 import { useAppDispatch } from 'Src/hooks';
-import { addOrg, delOrg } from 'Src/models/organization/slice';
-import { IdOrg } from 'Src/models/organization/type';
+import { addOrg } from 'Src/models/organization/slice';
 
 type Props = {
   anyProp?: any;
@@ -24,13 +23,6 @@ export const useOrgs = (props: Props) => {
     };
     dispatch(addOrg({ ...item }));
   }, [nameOrg, addressOrg, innOrg, dispatch]);
-
-  const deleteOrg = useCallback(
-    (id: IdOrg) => (e: React.MouseEvent<HTMLButtonElement>) => {
-      dispatch(delOrg(id));
-    },
-    [dispatch],
-  );
 
   const handleChangeOrgName = useCallback(
     ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) => {
@@ -58,7 +50,6 @@ export const useOrgs = (props: Props) => {
     handleChangeOrgAddress,
     handleChangeOrgInn,
     handleSubmitOrg,
-    deleteOrg,
     nameOrg,
     addressOrg,
     innOrg,

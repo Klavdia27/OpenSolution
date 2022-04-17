@@ -9,8 +9,7 @@ import iconNext from './assets/next.png';
 import iconChange from './assets/change.png';
 import iconDelete from './assets/delete.png';
 import { useAppDispatch } from '../../../../hooks';
-import { useOrgs } from '../../hooks/useOrgs';
-import { OrgModal, OrgModalContent, OrgModalEdit } from '../../orgModal';
+import { OrgModalDelete, OrgModalEdit } from '../../orgModal';
 
 type OrgType = {
   id: number;
@@ -26,6 +25,8 @@ interface OrgListItemProps {
 export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
+  const [showModalDelete, setShowModalDelete] = useState(false);
+  const [showModalChange, setShowModalChange] = useState(false);
 
   const openDivision = useCallback(
     (id: IdOrg) => (event: React.MouseEvent<HTMLButtonElement>) => {
@@ -34,10 +35,6 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
     },
     [navigate, dispatch],
   );
-
-  const { deleteOrg } = useOrgs({});
-  const [showModal, setShowModal] = useState(false);
-  const [showModalChange, setShowModalChange] = useState(false);
 
   return (
     <div>
@@ -59,7 +56,7 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
             </Tooltip>
             <button
               type="button"
-              className={cs(styles.btn_next)}
+              className={cs(styles.btn_change)}
               onClick={() => setShowModalChange(true)}
             >
               <img className={cs(styles.icon_action)} src={iconChange} alt="icon-change" />
@@ -67,20 +64,18 @@ export const OrgListItem: React.FC<OrgListItemProps> = ({ todo }) => {
             <button
               type="button"
               className={cs(styles.btn_delete)}
-              onClick={deleteOrg({ id: todo.id })}
+              onClick={() => setShowModalDelete(true)}
             >
               <img className={cs(styles.icon_action)} src={iconDelete} alt="icon-delete" />
             </button>
           </div>
         </div>
       </li>
-      {showModal && (
-        <OrgModal title="Add Organization" onClose={() => setShowModal(false)}>
-          <OrgModalContent onClose={() => setShowModal(false)} />
-        </OrgModal>
+      {showModalDelete && (
+        <OrgModalDelete onClose={() => setShowModalDelete(false)} idDeleteOrg={todo.id} />
       )}
       {showModalChange && (
-        <OrgModalEdit onClose={() => setShowModalChange(false)} idEdit={todo.id} />
+        <OrgModalEdit onClose={() => setShowModalChange(false)} idEditOrg={todo.id} />
       )}
     </div>
   );

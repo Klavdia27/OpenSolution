@@ -11,12 +11,6 @@
       "INN": "2345678904"
     },
     {
-      "id": 2,
-      "name": "sferaд",
-      "address": "minskл",
-      "INN": "8765"
-    },
-    {
       "id": 4,
       "name": "qwqwesdfssss",
       "address": "werweass",
@@ -48,24 +42,12 @@
     },
     {
       "id": 15,
-      "name": "вв",
-      "address": "вв",
-      "INN": 123
+      "name": "fff",
+      "address": "fff",
+      "INN": "233"
     },
     {
       "id": 21,
-      "name": "wwww",
-      "address": "ddd",
-      "INN": null
-    },
-    {
-      "id": 22,
-      "name": "dddf",
-      "address": "ddd",
-      "INN": 22222222
-    },
-    {
-      "id": 23,
       "name": "wwww",
       "address": "ddd",
       "INN": null
@@ -87,6 +69,12 @@
       "name": "twenty",
       "address": "krichev",
       "INN": "0987"
+    },
+    {
+      "id": 34,
+      "name": "asd",
+      "address": "sdsad",
+      "INN": 342
     }
   ],
   "division": [
@@ -189,8 +177,8 @@
     {
       "id": 18,
       "id_organization": 2,
-      "name": "fty",
-      "phone": "fty"
+      "name": "fty-fly",
+      "phone": "fty-fly"
     },
     {
       "id": 18,
@@ -213,8 +201,8 @@
     {
       "id": 21,
       "id_organization": 2,
-      "name": "www",
-      "phone": "hhh"
+      "name": "www-po",
+      "phone": "hhh-po"
     },
     {
       "id": 24,
@@ -251,6 +239,36 @@
       "id_organization": 2,
       "name": "www",
       "phone": "2223"
+    },
+    {
+      "id": 30,
+      "id_organization": 4,
+      "name": "tyu",
+      "phone": "tyu"
+    },
+    {
+      "id": 31,
+      "id_organization": 4,
+      "name": "www",
+      "phone": "sds"
+    },
+    {
+      "id": 32,
+      "id_organization": 4,
+      "name": "ret",
+      "phone": "yyy"
+    },
+    {
+      "id": 33,
+      "id_organization": 30,
+      "name": "rerr",
+      "phone": "tima"
+    },
+    {
+      "id": 34,
+      "id_organization": 28,
+      "name": "rerr",
+      "phone": "hhh"
     }
   ],
   "employee": [
@@ -355,9 +373,9 @@
     {
       "id": 20,
       "id_division": 10,
-      "FIO": "fer",
-      "address": "fer",
-      "position": "dre"
+      "FIO": "tima tima ",
+      "address": "minsk",
+      "position": "minsk- plie"
     },
     {
       "id": 21,
@@ -365,6 +383,20 @@
       "FIO": "ytt",
       "address": "rre",
       "position": "eww"
+    },
+    {
+      "id": 22,
+      "id_division": 34,
+      "FIO": "Klavdia k",
+      "address": "Klavdia k",
+      "position": "Klavdia k"
+    },
+    {
+      "id": 23,
+      "id_division": 34,
+      "FIO": "Klavdia k",
+      "address": "Klavdia k",
+      "position": "Klavdia k"
     }
   ]
 }

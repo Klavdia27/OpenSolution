@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import { clearEmployee, fetchEmployee } from 'Src/models/employee/slice';
+import { fetchEmployee } from 'Src/models/employee/slice';
 import { Button } from 'Src/UIElements/Button';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
 import { Loader } from 'Src/components/Loader';
@@ -29,18 +29,14 @@ export const EmployeePage: React.FC = () => {
     dispatch(fetchEmployee({ id_division: prodId }));
   }, [prodId, dispatch]);
 
-  // const openDivisionPage = () => {
-  //   console.log('нажаЛи back на странице организации');
-  //   navigate(`/organization/division`);  // нужно указать idorg
-  //   dispatch(clearEmployee());
-  // };
-  // onClick={openDivisionPage} - в 43 строку
   return (
     <div>
       <HeaderPage />
       <div className={cs(styles.div)}>
         <div className={cs(styles.btns)}>
-          <Button className={cs(styles.button_back, styles.button)}>Back</Button>
+          <Button className={cs(styles.button_back, styles.button)} onClick={() => navigate(-1)}>
+            Back
+          </Button>
           <Button
             className={cs(styles.button_add_org, styles.button)}
             onClick={() => setShowModal(true)}

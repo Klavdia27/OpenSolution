@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import cs from 'classnames';
 import { Button } from 'Common/UI/Button';
 import { Input } from 'Src/UIElements/Input';

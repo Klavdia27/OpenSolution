@@ -1,8 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'Src/hooks';
-import { addDiv, delDiv } from 'Src/models/division/slice';
-import { DivisionDel } from 'Src/models/division/type';
+import { addDiv } from 'Src/models/division/slice';
 
 type Props = {
   anyProp?: any;
@@ -29,14 +28,6 @@ export const useDivs = (props: Props) => {
     dispatch(addDiv({ ...itemDiv }));
   }, [idNumber, nameDiv, phoneDiv, dispatch]);
 
-  const deleteDiv = useCallback(
-    ({ id, idOrganization }: DivisionDel) =>
-      (e: React.MouseEvent<HTMLButtonElement>) => {
-        dispatch(delDiv({ id, idOrganization }));
-      },
-    [dispatch],
-  );
-
   const handleChangeDivName = useCallback(
     ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) => {
       setNameDiv(value);
@@ -59,7 +50,6 @@ export const useDivs = (props: Props) => {
     handleChangeDivName,
     handleChangeDivPhone,
     handleSubmitDiv,
-    deleteDiv,
     nameDiv,
     phoneDiv,
   };

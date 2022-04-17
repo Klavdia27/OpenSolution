@@ -8,6 +8,7 @@ export const initialDivState: DivSlice = [];
 export const fetchDiv = createAction<IdOrg>('fetchDiv');
 export const addDiv = createAction<IDivisionCreate>('addDiv');
 export const delDiv = createAction<DivisionDel>('delDiv');
+export const editDiv = createAction<IDivision>('editDiv');
 
 export const divSlice = createSlice({
   name: 'div',

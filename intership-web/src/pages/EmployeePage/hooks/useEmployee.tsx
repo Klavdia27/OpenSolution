@@ -1,7 +1,7 @@
 import { useCallback, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useAppDispatch } from 'Src/hooks';
-import { addEmployee, delEmployee } from 'Src/models/employee/slice';
+import { addEmployee } from 'Src/models/employee/slice';
 
 type Props = {
   anyProp?: any;
@@ -30,14 +30,6 @@ export const useEmployee = (props: Props) => {
     };
     dispatch(addEmployee({ ...itemDiv }));
   }, [idNumber, employeeFio, employeeAddress, employeePosition, dispatch]);
-
-  const deleteEmployee = useCallback(
-    ({ id, idDivision }) =>
-      (e: React.MouseEvent<HTMLButtonElement>) => {
-        dispatch(delEmployee({ id, idDivision }));
-      },
-    [dispatch],
-  );
 
   const handleChangeEmpFio = useCallback(
     ({ currentTarget: { value } }: React.FormEvent<HTMLInputElement>) => {
@@ -69,7 +61,6 @@ export const useEmployee = (props: Props) => {
     handleChangeEmpAddress,
     handleChangeEmpPosition,
     handleSubmitEmployee,
-    deleteEmployee,
     employeeFio,
     employeeAddress,
     employeePosition,

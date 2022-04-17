@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import { Button } from 'Src/UIElements/Button';
 import cs from 'classnames';
 import { useAppDispatch, useAppSelector } from 'Src/hooks';
-import { clearDiv, fetchDiv } from 'Src/models/division/slice';
+import { fetchDiv } from 'Src/models/division/slice';
 import { Loader } from 'Src/components/Loader';
 import { HeaderPage } from '../component/HeaderAllPage';
 import styles from './styles.module.scss';
@@ -27,18 +27,12 @@ export const DivisionsPage: React.FC = () => {
     dispatch(fetchDiv({ id_organization: prodId }));
   }, [prodId, dispatch]);
 
-  const openOrganizationPage = () => {
-    console.log('нажаЛи back на странице организации');
-    navigate(`/organization`);
-    dispatch(clearDiv());
-  };
-
   return (
     <div>
       <HeaderPage />
       <div className={cs(styles.div)}>
         <div className={cs(styles.btns)}>
-          <Button className={cs(styles.button_back, styles.button)} onClick={openOrganizationPage}>
+          <Button className={cs(styles.button_back, styles.button)} onClick={() => navigate(-1)}>
             Back
           </Button>
           <Button

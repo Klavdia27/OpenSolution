@@ -9,28 +9,28 @@ import styles from './styles.module.scss';
 
 type Props = {
   onClose: () => void;
-  idEdit: number;
+  idEditOrg: number;
 };
 
-export const OrgModalEdit: React.FC<Props> = ({ onClose, idEdit }) => {
+export const OrgModalEdit: React.FC<Props> = ({ onClose, idEditOrg }) => {
   const dispatch = useAppDispatch();
   const newOrg = useAppSelector<Organization>(
-    (state) => state.org.find((elem) => elem.id === idEdit) as Organization,
+    (state) => state.org.find((elem) => elem.id === idEditOrg) as Organization,
   );
   const [nameOrgEdit, setNameOrgEdit] = useState<string>(newOrg.name);
   const [addressOrgEdit, setAddressOrgEdit] = useState<string>(newOrg.address);
-  const [innOrgCEdit, setInnOrgEdit] = useState<string | number>(newOrg.INN);
+  const [innOrgEdit, setInnOrgEdit] = useState<string | number>(newOrg.INN);
 
-  const handleSubmitOrgChange = useCallback(() => {
+  const handleSubmitOrgEdit = useCallback(() => {
     dispatch(
       editOrg({
-        id: idEdit,
+        id: idEditOrg,
         name: nameOrgEdit,
         address: addressOrgEdit,
-        INN: innOrgCEdit,
+        INN: innOrgEdit,
       }),
     );
-  }, [dispatch, idEdit, nameOrgEdit, addressOrgEdit, innOrgCEdit]);
+  }, [dispatch, idEditOrg, nameOrgEdit, addressOrgEdit, innOrgEdit]);
 
   const handleClose = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
@@ -61,7 +61,7 @@ export const OrgModalEdit: React.FC<Props> = ({ onClose, idEdit }) => {
     <div className={cs(styles.modal)}>
       <div className={cs(styles.window)}>
         <div className={cs(styles.header)}>
-          <h2 className={cs(styles.title_modal)}> Change organization </h2>
+          <h2 className={cs(styles.title_modal)}> Edit organization </h2>
           <button type="button" onClick={handleClose}>
             x
           </button>
@@ -73,20 +73,20 @@ export const OrgModalEdit: React.FC<Props> = ({ onClose, idEdit }) => {
               <div>Organization Name</div>
               <Input
                 value={nameOrgEdit}
-                name="nameOrgTodo"
+                name="nameOrgEdit"
                 type="text"
                 onChange={handleChangeOrgName}
               />
               <div>Organization Address</div>
               <Input
                 value={addressOrgEdit}
-                name="addressOrgTodo"
+                name="addressOrgEdit"
                 type="text"
                 onChange={handleChangeOrgAddress}
               />
               <div>Organization&apos;s INN</div>
               <Input
-                value={innOrgCEdit}
+                value={innOrgEdit}
                 name="innOrgTodo"
                 type="text"
                 onChange={handleChangeOrgInn}
@@ -95,10 +95,10 @@ export const OrgModalEdit: React.FC<Props> = ({ onClose, idEdit }) => {
             <div className={cs(styles.form_footer)}>
               <Button
                 onClick={() => {
-                  handleSubmitOrgChange();
+                  handleSubmitOrgEdit();
                   onClose();
                 }}
-                className={cs(styles.btn_addtodo)}
+                className={cs(styles.btn_edittodo)}
               >
                 Редактировать
               </Button>

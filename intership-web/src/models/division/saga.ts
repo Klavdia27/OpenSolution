@@ -1,8 +1,8 @@
 import { call, delay, put, takeEvery } from 'redux-saga/effects';
 import { API } from 'Src/Api';
 import { setLoading } from '../identity/slice';
-import { addDiv, clearDiv, delDiv, fetchDiv, setDiv } from './slice';
-import { IdOrg, IDivisionCreate, DivisionDel } from './type';
+import { addDiv, clearDiv, delDiv, editDiv, fetchDiv, setDiv } from './slice';
+import { IdOrg, IDivisionCreate, DivisionDel, IDivision } from './type';
 
 type DivResponse = {
   data: Array<{
@@ -62,10 +62,27 @@ function* fetchDivWorkerDel({ payload }: { payload: DivisionDel }) {
   }
 }
 
+function* fetchDivWorkerEdit({ payload }: { payload: IDivision }) {
+  try {
+    const apiDivDel = `/api/division/?id=${payload.id}`;
+    yield call(API.put, apiDivDel, { ...payload });
+    const apiDivGet = `/api/division/?id=${payload.id_organization}`;
+    yield put(setLoading(true));
+    yield delay(5000);
+    yield put(setLoading(false));
+    const { data }: DivResponse = yield call(API.get, apiDivGet);
+    yield put(clearDiv());
+    yield put(setDiv(data));
+  } catch (error) {
+    console.error(error);
+  }
+}
+
 function* getDivSaga() {
   yield takeEvery(fetchDiv, fetchDivWorker);
   yield takeEvery(addDiv, fetchDivWorkerAdd);
   yield takeEvery(delDiv, fetchDivWorkerDel);
+  yield takeEvery(editDiv, fetchDivWorkerEdit);
 }
 
 export default getDivSaga;
